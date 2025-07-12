@@ -4,7 +4,7 @@ import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'app_colors.dart';
 
 abstract class AppTheme {
-  static ThemeData getTheme({required ColorScheme colorScheme,}) {
+  static ThemeData getTheme({required ColorScheme colorScheme,required Color textFormFieldBorderColor}) {
     return ThemeData(
       colorScheme: colorScheme,
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -14,16 +14,45 @@ abstract class AppTheme {
           foregroundColor: AppColors.white,
           disabledBackgroundColor: AppColors.black[30],
           disabledForegroundColor: AppColors.white,
-          textStyle: AppStyles.mediumText16Style.copyWith(color: AppColors.white),
+          textStyle: AppStyles.mediumBlack16Style.copyWith(color: AppColors.white),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100),
           )
         )
       ),
+      inputDecorationTheme: InputDecorationTheme(
+            labelStyle: AppStyles.labelStyle,
+            hintStyle:AppStyles.hintStyle,
+            fillColor: AppColors.white,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: BorderSide(color: textFormFieldBorderColor, width: 1),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: BorderSide(color: textFormFieldBorderColor, width: 1),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: BorderSide(color: colorScheme.error, width: 1),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: BorderSide(color: colorScheme.error, width: 1),
+            ),
+      ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
+          padding: EdgeInsets.all(16),
+          backgroundColor: AppColors.skyBlue,
+          foregroundColor: AppColors.white,
+          textStyle: AppStyles.mediumBlack16Style.copyWith(color: AppColors.white),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(50),
           ),
         ),
       ),
@@ -42,5 +71,6 @@ abstract class AppTheme {
       surface: AppColors.white,
       onSurface: AppColors.blue,
     ),
+    textFormFieldBorderColor: AppColors.grey
   );
 }
