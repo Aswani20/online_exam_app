@@ -1,16 +1,15 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:online_exam_app/core/route/app_routes.dart';
 import 'package:online_exam_app/core/theme/app_assets.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
-import '../../project_layers/presentation_layer /authentication/signup/signup_view.dart';
+import '../../project_layers/presentation_layer/authentication/signup/signup_view.dart';
 
 abstract class Routes {
   static Route generateRoute(RouteSettings settings) {
     final url = Uri.parse(settings.name ?? "/");
-
     switch (url.path) {
       case AppRoutes.signUpScreen:
       return MaterialPageRoute(builder: (_) => SignupView());
@@ -21,8 +20,6 @@ abstract class Routes {
     }
   }
 }
-
-
 
 class NotFoundScreen extends StatelessWidget {
   const NotFoundScreen({super.key});
