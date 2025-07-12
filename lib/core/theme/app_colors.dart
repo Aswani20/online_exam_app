@@ -9,6 +9,7 @@ abstract class AppColors {
   static const Color lightGreen = Color(0xffCAF9CC);
   static const Color lightRed = Color(0xffF8D2D2);
   static const Color placeHolder = Color(0xffA6A6A6);
+  static const Color skyBlue = Color(0xff4DA8F0);
   static MaterialColor blue = MaterialColor(0xff02369C,  <int, Color>{
     10: Color(0xFFCCD7EB),  // 10%
     20: Color(0xFFABBCDE), // 20%
