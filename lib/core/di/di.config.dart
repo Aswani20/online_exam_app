@@ -15,6 +15,17 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../project_layers/api_layer/api_client/api_client.dart' as _i778;
+import '../../project_layers/api_layer/dataSource/ForgotPasswordRemoteDataSourceimpl.dart'
+    as _i238;
+import '../../project_layers/data_layer/dataSource/ForgotPasswordRemoteDataSource.dart'
+    as _i160;
+import '../../project_layers/data_layer/repositories/ForgotPasswordRepoimpl.dart'
+    as _i866;
+import '../../project_layers/Domain_layer/usecase/SendForgotPasswordEmailUseCase.dart'
+    as _i375;
+import '../../project_layers/presentation_layer/authentication/ForgotPassword/forgot_viewModel.dart'
+    as _i703;
 import 'modules/dio_module.dart' as _i983;
 import 'modules/shared_preferences_module.dart' as _i813;
 
@@ -34,6 +45,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
+    );
+    gh.factory<_i703.ForgotViewModel>(
+      () => _i703.ForgotViewModel(gh<_i375.SendForgotPasswordEmailUseCase>()),
+    );
+    gh.factory<_i160.ForgotPasswordRemoteDataSource>(
+      () => _i238.ForgotPasswordRemoteDataSourceImpl(gh<_i778.ApiClient>()),
+    );
+    gh.factory<_i866.ForgotPasswordRepoImpl>(
+      () => _i866.ForgotPasswordRepoImpl(
+        gh<_i160.ForgotPasswordRemoteDataSource>(),
+      ),
     );
     return this;
   }
