@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../Domain_layer/model/resetPassword.dart';
+import '../../Domain_layer/model/resetPasswordModel.dart';
 
 part 'resetPasswordDto.g.dart';
 
@@ -24,8 +24,8 @@ class ResetPasswordDto {
     return _$ResetPasswordDtoToJson(this);
   }
 
-  ResetPassword toResetPassword(){
-    return ResetPassword(
+  ResetPasswordModel toResetPassword(){
+    return ResetPasswordModel(
       message: message,
       code: code
     );

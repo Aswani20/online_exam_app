@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/di/di.dart';
+import '../authViewModel.dart';
+
 
 class SignupView extends StatelessWidget {
-  const SignupView({super.key});
+  SignupView({super.key});
+
+  final AuthViewModel _authViewModel = getIt.get<AuthViewModel>();
 
   @override
   Widget build(BuildContext context) {

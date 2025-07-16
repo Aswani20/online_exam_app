@@ -1,8 +1,8 @@
-class Forgot {
+class ForgotPasswordModel {
   final String? message;
   final String? info;
 
-  Forgot ({
+  ForgotPasswordModel ({
     this.message,
     this.info,
   });

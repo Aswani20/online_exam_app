@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/project_layers/Domain_layer/model/Reset.dart';
+import 'package:online_exam_app/project_layers/Domain_layer/model/resetCodeModel.dart';
 
 part 'resetDto.g.dart';
 
@@ -23,8 +23,8 @@ class ResetDto {
     return _$ResetDtoToJson(this);
   }
 
-  Reset toReset(){
-    return Reset(
+  ResetCodeModel toResetCode(){
+    return ResetCodeModel(
       message: message,
       code: code
     );

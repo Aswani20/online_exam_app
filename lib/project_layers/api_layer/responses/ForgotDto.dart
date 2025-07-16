@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../Domain_layer/model/Forgot.dart';
+import '../../Domain_layer/model/forgotPasswordModel.dart';
 
 part 'ForgotDto.g.dart';
 
@@ -24,8 +24,8 @@ class ForgotDto {
     return _$ForgotDtoToJson(this);
   }
 
-  Forgot toForgot() {
-    return Forgot(
+  ForgotPasswordModel toForgotPassword() {
+    return ForgotPasswordModel(
       message: message,
       info: info,
     );

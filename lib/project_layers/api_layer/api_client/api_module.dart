@@ -8,7 +8,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class ApiModule{
 
   @singleton
-  Dio provideDio(){
+  Dio provideDio(PrettyDioLogger logger){
     var dio = Dio(
       BaseOptions(
         baseUrl: "https://exam.elevateegy.com/api/",
@@ -17,17 +17,21 @@ class ApiModule{
         receiveTimeout: const Duration(seconds: 20),
       )
     );
-    dio.interceptors.add(PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        responseHeader: false,
-        error: true,
-        compact: true,
-        maxWidth: 90,
-        enabled: kDebugMode,
-    )
-    );
+    dio.interceptors.add(logger);
     return dio;
+  }
+
+  @lazySingleton // Or @singleton if you prefer, lazySingleton defers creation until first needed
+  PrettyDioLogger providePrettyDioLogger() {
+    return PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+      enabled: kDebugMode, // Only enable in debug mode
+    );
   }
 }

@@ -1,11 +1,9 @@
-class ResetPassword{
+class ResetPasswordModel{
   final String? message;
   final int? code;
 
-  ResetPassword ({
+  ResetPasswordModel ({
     this.message,
     this.code,
   });
 }
-
-

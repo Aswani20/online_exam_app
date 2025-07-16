@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/project_layers/Domain_layer/usecase/SendForgotPasswordEmailUseCase.dart';
+import 'package:online_exam_app/project_layers/Domain_layer/usecase/authUseCase.dart';
 
 @injectable
 class ForgotViewModel{
 
-  SendForgotPasswordEmailUseCase _sendForgotPasswordEmailUseCase;
+  AuthUseCase _authUseCase;
 
-  ForgotViewModel(this._sendForgotPasswordEmailUseCase);
+  ForgotViewModel(this._authUseCase);
 }

@@ -1,8 +1,8 @@
-class Reset {
+class ResetCodeModel {
   final String? message;
   final int? code;
 
-  Reset({
+  ResetCodeModel({
     this.message,
     this.code,
   });
