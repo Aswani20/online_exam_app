@@ -5,9 +5,9 @@ import 'package:online_exam_app/core/route/routes.dart';
 import 'package:online_exam_app/core/theme/app_theme.dart';
 import 'core/l10n/translation/app_localizations.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
+  configureDependencies();
   runApp(MyApp());
 }
 
