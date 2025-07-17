@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/di/di.dart';
 
-import '../../../../core/di/di.dart';
 import '../authViewModel.dart';
 
-
-class SignupView extends StatelessWidget {
-  SignupView({super.key});
+class ForgotScreen extends StatelessWidget {
+  ForgotScreen({super.key});
 
   final AuthViewModel _authViewModel = getIt.get<AuthViewModel>();
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Placeholder();
   }
 }
