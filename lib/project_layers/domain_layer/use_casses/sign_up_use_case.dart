@@ -1,14 +1,32 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_request_entity.dart';
+import 'package:online_exam_app/core/errors/failures.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/repositories/signup_repo.dart';
 
 @injectable
-class SignUpUseCase{
+class SignUpUseCase {
   SignupRepo signupRepo;
+
   SignUpUseCase({required this.signupRepo});
 
-  Future<SignUpResponseEntity> invoke(SignUpRequestEntity request) async{
-    return await signupRepo.signup(request);
+  Future<Either<Failures,SignUpResponseEntity>> invoke({
+    required String username,
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+    required String rePassword,
+    required String phone,
+  }) {
+    return signupRepo.signup(
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      rePassword: rePassword,
+      phone: phone,
+    );
   }
 }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:online_exam_app/core/di/di.dart';
+import 'package:online_exam_app/core/dialog/dialog.dart';
 import 'package:online_exam_app/core/route/app_routes.dart';
+import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/theme/app_constants.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/app_validator.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/cubit/sign_up_states.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/cubit/signup_view_model.dart';
-import '../../../../core/theme/app_colors.dart';
+
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -27,34 +28,26 @@ class _SignupViewState extends State<SignupView> {
       bloc: viewModel,
       listener: (context,state){
         if(state is SignUpLoadingState){
-          Fluttertoast.showToast(
-              msg: "Loading...",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.grey,
-              textColor: Colors.white,
-              fontSize: 16.0
-          );
+          DialogUtils.showLoading(context: context, loadingMessage: "loading");
         }else if(state is SignUpSuccessState){
-          Fluttertoast.showToast(
-              msg: state.responseEntity.message.toString(),
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.green,
-              textColor: Colors.white,
-              fontSize: 16.0
+          DialogUtils.hideLoading(context);
+          DialogUtils.showMessage(
+            context: context,
+            content:
+            state.responseEntity.message ??
+               "Success",
+            posActions:"OK",
+            posFunction: (p0) {
+              Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+            },
           );
-        }else if(state is SignUpErrorState){
-          Fluttertoast.showToast(
-              msg: state.errorMessage.toString(),
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0
+        }
+        else if(state is SignUpErrorState){
+          DialogUtils.hideLoading(context);
+          DialogUtils.showMessage(
+            context: context,
+            content: state.errorMessage,
+            negActions: "Ok",
           );
         }
 

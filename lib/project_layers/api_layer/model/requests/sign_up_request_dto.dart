@@ -1,54 +1,28 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_request_entity.dart';
 
 part 'sign_up_request_dto.g.dart';
 
 @JsonSerializable()
 class SignUpRequestDto {
-  @JsonKey(name: "username")
-  final String? username;
-  @JsonKey(name: "firstName")
-  final String? firstName;
-  @JsonKey(name: "lastName")
-  final String? lastName;
-  @JsonKey(name: "email")
-  final String? email;
-  @JsonKey(name: "password")
-  final String? password;
-  @JsonKey(name: "rePassword")
-  final String? rePassword;
-  @JsonKey(name: "phone")
-  final String? phone;
+  final String username;
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String password;
+  final String rePassword;
+  final String phone;
 
-  SignUpRequestDto ({
-    this.username,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.password,
-    this.rePassword,
-    this.phone,
+  SignUpRequestDto({
+    required this.username,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.password,
+    required this.rePassword,
+    required this.phone,
   });
 
-  factory SignUpRequestDto.fromJson(Map<String, dynamic> json) {
-    return _$SignUpRequestDtoFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$SignUpRequestDtoToJson(this);
-  }
-
-  SignUpRequestEntity toEntity(){
-    return SignUpRequestEntity(
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      rePassword: rePassword,
-      phone: phone,
-    );
-  }
+  factory SignUpRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$SignUpRequestDtoFromJson(json);
+  Map<String, dynamic> toJson() => _$SignUpRequestDtoToJson(this);
 }
-
-

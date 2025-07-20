@@ -1,8 +1,8 @@
 class SignUpResponseEntity {
-  final String? message;
-  final String? token;
-  final int? code;
-  final UserEntity? user;
+   String? message;
+   String? token;
+   int? code;
+   UserEntity? user;
 
   SignUpResponseEntity ({
     this.message,
@@ -13,15 +13,15 @@ class SignUpResponseEntity {
 }
 
 class UserEntity {
-  final String? username;
-  final String? firstName;
-  final String? lastName;
-  final String? email;
-  final String? phone;
-  final String? role;
-  final bool? isVerified;
-  final String? id;
-  final String? createdAt;
+   String? username;
+   String? firstName;
+   String? lastName;
+   String? email;
+   String? phone;
+   String? role;
+   bool? isVerified;
+   String? id;
+   String? createdAt;
 
   UserEntity ({
     this.username,

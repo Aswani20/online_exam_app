@@ -48,9 +48,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
     );
-    gh.factory<_i778.ApiClient>(
-      () => _i778.ApiClient(gh<_i361.Dio>(), baseUrl: gh<String>()),
-    );
+    gh.factory<_i778.ApiClient>(() => _i778.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i802.SignupRemoteDataSource>(
       () => _i904.SignupRemoteDataSourceImpl(gh<_i778.ApiClient>()),
     );
