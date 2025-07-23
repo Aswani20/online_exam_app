@@ -4,7 +4,6 @@ import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/dialog/dialog.dart';
 import 'package:online_exam_app/core/route/app_routes.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/core/theme/app_constants.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/app_validator.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
@@ -59,7 +58,7 @@ class _SignupViewState extends State<SignupView> {
             child: Icon(Icons.arrow_back_ios),
           ),
           leadingWidth: context.width * 0.06,
-          title: Text(AppConstants.signUp, style: AppStyles.appBarTitleStyle),
+          title: Text(context.l10n.signUp, style: AppStyles.appBarTitleStyle),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
@@ -73,11 +72,11 @@ class _SignupViewState extends State<SignupView> {
                   child: Column(
                     children: [
                       TextFormField(
-                        validator: AppValidators.nonEmptyField,
+                        validator: (value) => AppValidators.nonEmptyField(value, context),
                         controller: viewModel.userNameController,
                         decoration: InputDecoration(
-                          labelText: AppConstants.userName,
-                          hintText: AppConstants.userNameHint,
+                          labelText: context.l10n.userName,
+                          hintText: context.l10n.userNameHint,
                         ),
                       ),
                       (context.height * 0.03).heightBox,
@@ -85,22 +84,22 @@ class _SignupViewState extends State<SignupView> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              validator: AppValidators.nameValidator,
+                              validator: (value) => AppValidators.nameValidator(value, context),
                               controller: viewModel.firstNameController,
                               decoration: InputDecoration(
-                                labelText: AppConstants.firstName,
-                                hintText: AppConstants.firstNameHint,
+                                labelText: context.l10n.firstName,
+                                hintText: context.l10n.firstNameHint,
                               ),
                             ),
                           ),
                           (context.width * 0.02).widthBox,
                           Expanded(
                             child: TextFormField(
-                              validator: AppValidators.nameValidator,
+                              validator: (value) => AppValidators.nameValidator(value, context),
                               controller: viewModel.lastNameController,
                               decoration: InputDecoration(
-                                labelText: AppConstants.lastName,
-                                hintText: AppConstants.lastNameHint,
+                                labelText: context.l10n.lastName,
+                                hintText: context.l10n.lastNameHint,
                               ),
                             ),
                           ),
@@ -108,11 +107,11 @@ class _SignupViewState extends State<SignupView> {
                       ),
                       (context.height * 0.03).heightBox,
                       TextFormField(
-                        validator: AppValidators.emailValidator,
+                        validator: (value) => AppValidators.emailValidator(value, context),
                         controller: viewModel.emailController,
                         decoration: InputDecoration(
-                          labelText: AppConstants.email,
-                          hintText: AppConstants.emailHint,
+                          labelText: context.l10n.email,
+                          hintText: context.l10n.emailHint,
                         ),
                       ),
                       (context.height * 0.03).heightBox,
@@ -120,22 +119,22 @@ class _SignupViewState extends State<SignupView> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              validator: AppValidators.passwordValidator,
+                              validator: (value) => AppValidators.passwordValidator(value, context),
                               controller: viewModel.passwordController,
                               decoration: InputDecoration(
-                                labelText: AppConstants.password,
-                                hintText: AppConstants.passwordHint,
+                                labelText: context.l10n.password,
+                                hintText: context.l10n.passwordHint,
                               ),
                             ),
                           ),
                           (context.width * 0.02).widthBox,
                           Expanded(
                             child: TextFormField(
-                              validator: (value) => AppValidators.confirmPasswordValidator(value,viewModel.passwordController),
+                              validator: (value) => AppValidators.confirmPasswordValidator(value,viewModel.passwordController,context),
                               controller: viewModel.confirmPasswordController,
                               decoration: InputDecoration(
-                                labelText: AppConstants.confirmPassword,
-                                hintText: AppConstants.confirmPasswordHint,
+                                labelText: context.l10n.confirmPassword,
+                                hintText: context.l10n.confirmPasswordHint,
                               ),
                             ),
                           ),
@@ -143,11 +142,11 @@ class _SignupViewState extends State<SignupView> {
                       ),
                       (context.height * 0.03).heightBox,
                       TextFormField(
-                        validator: AppValidators.phoneNumberValidator,
+                        validator: (value) => AppValidators.phoneNumberValidator(value, context),
                         controller: viewModel.phoneNumberController,
                         decoration: InputDecoration(
-                          labelText: AppConstants.phoneNumber,
-                          hintText: AppConstants.phoneNumberHint,
+                          labelText: context.l10n.phoneNumber,
+                          hintText: context.l10n.phoneNumberHint,
                         ),
                       ),
                       (context.height * 0.05).heightBox,
@@ -155,7 +154,7 @@ class _SignupViewState extends State<SignupView> {
                         width: context.width,
                         child: ElevatedButton(
                           onPressed: viewModel.signUp,
-                          child: Text(AppConstants.signUp),
+                          child: Text(context.l10n.signUp),
                         ),
                       ),
                       (context.height * 0.02).heightBox,
@@ -163,7 +162,7 @@ class _SignupViewState extends State<SignupView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            AppConstants.haveAccount,
+                            context.l10n.haveAccount,
                             style: AppStyles.mediumBlack16Style,
                           ),
                           (context.width * 0.02).widthBox,
@@ -172,7 +171,7 @@ class _SignupViewState extends State<SignupView> {
                               Navigator.pushNamed(context, AppRoutes.loginScreen);
                             },
                             child: Text(
-                              AppConstants.login,
+                              context.l10n.login,
                               style: AppStyles.mediumBlack16Style.copyWith(
                                 color: AppColors.blue,
                                 decoration: TextDecoration.underline,

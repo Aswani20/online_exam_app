@@ -1,69 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/extensions/project_extensions.dart';
 
 class AppValidators {
   //Non_empty validator
-  static String? nonEmptyField(value) {
+  static String? nonEmptyField(value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return "Please enter value";
+      return context.l10n.pleaseEnterValue;
     }
     return null;
   }
 
   //first-last name validator
-  static String? nameValidator(value) {
+  static String? nameValidator(value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return "Please enter name";
+      return context.l10n.pleaseEnterName;
     }
     final lengthRegex = RegExp(r'^.{3,}$');
     if (!lengthRegex.hasMatch(value)) {
-      return "Name must be more than 3 characters";
+      return context.l10n.nameMustBeMoreThan3Characters;
     }
     return null;
   }
 
   //Password validator
-  static String? passwordValidator(value) {
+  static String? passwordValidator(value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return "Please enter your password";
+      return context.l10n.pleaseEnterYourPassword;
     }
-    final passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+    final passwordRegex = RegExp(
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
+    );
     if (!passwordRegex.hasMatch(value)) {
-      return 'Password must contain upper, lower, and special character';
+      return context.l10n.passwordMustContainUpperLowerAndSpecialCharacter;
     }
     return null;
   }
 
   //Confirm password validator
-  static String? confirmPasswordValidator(value, TextEditingController passwordController) {
+  static String? confirmPasswordValidator(
+    value,
+    TextEditingController passwordController,
+    BuildContext context,
+  ) {
     if (value == null || value.isEmpty) {
-      return "Please enter your password";
+      return context.l10n.pleaseEnterYourPassword;
     }
     if (value != passwordController.text) {
-      return "Passwords do not match";
+      return context.l10n.passwordsDoNotMatch;
     }
     return null;
   }
 
   //Email validation
-  static String? emailValidator(value) {
+  static String? emailValidator(value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return "Please enter your email";
+      return context.l10n.passwordMustContainUpperLowerAndSpecialCharacter;
     }
     final customEmailRegex = RegExp(r'^[\w.-]+@[\w-]+\.[a-zA-Z]{2,}$');
     if (!customEmailRegex.hasMatch(value)) {
-      return 'Email must be like this "example@gmail.com';
+      return context.l10n.emailMustBeLikeThisExampleGmailCom;
     }
     return null;
   }
 
   //Phone validation
-  static String? phoneNumberValidator(value) {
+  static String? phoneNumberValidator(value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Please enter a phone number';
+      return context.l10n.pleaseEnterYourPhoneNumber;
     }
     final egyptPhoneRegex = RegExp(r'^01[0125][0-9]{8}$');
     if (!egyptPhoneRegex.hasMatch(value)) {
-      return 'Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)';
+      return context.l10n.enterAValidEgyptianPhoneNumber;
     }
 
     return null;

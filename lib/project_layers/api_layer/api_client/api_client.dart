@@ -6,7 +6,6 @@ import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';
 
-@injectable
 @singleton
 @RestApi(baseUrl: 'https://exam.elevateegy.com/api/')
 abstract class ApiClient {
