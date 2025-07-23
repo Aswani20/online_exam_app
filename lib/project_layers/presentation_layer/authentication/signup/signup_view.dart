@@ -57,7 +57,7 @@ class _SignupViewState extends State<SignupView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Icon(Icons.arrow_back_ios),
           ),
-          leadingWidth: context.width * 0.06,
+          leadingWidth: 20,
           title: Text(context.l10n.signUp, style: AppStyles.appBarTitleStyle),
         ),
         body: Padding(
@@ -66,7 +66,7 @@ class _SignupViewState extends State<SignupView> {
             padding: EdgeInsets.zero,
             child: Column(
               children: [
-                (context.height*0.02).heightBox,
+                16.heightBox,
                 Form(
                   key: viewModel.formKey,
                   child: Column(
@@ -79,7 +79,7 @@ class _SignupViewState extends State<SignupView> {
                           hintText: context.l10n.userNameHint,
                         ),
                       ),
-                      (context.height * 0.03).heightBox,
+                      20.heightBox,
                       Row(
                         children: [
                           Expanded(
@@ -92,7 +92,7 @@ class _SignupViewState extends State<SignupView> {
                               ),
                             ),
                           ),
-                          (context.width * 0.02).widthBox,
+                          12.widthBox,
                           Expanded(
                             child: TextFormField(
                               validator: (value) => AppValidators.nameValidator(value, context),
@@ -105,7 +105,7 @@ class _SignupViewState extends State<SignupView> {
                           ),
                         ],
                       ),
-                      (context.height * 0.03).heightBox,
+                      20.heightBox,
                       TextFormField(
                         validator: (value) => AppValidators.emailValidator(value, context),
                         controller: viewModel.emailController,
@@ -114,7 +114,7 @@ class _SignupViewState extends State<SignupView> {
                           hintText: context.l10n.emailHint,
                         ),
                       ),
-                      (context.height * 0.03).heightBox,
+                      20.heightBox,
                       Row(
                         children: [
                           Expanded(
@@ -127,7 +127,7 @@ class _SignupViewState extends State<SignupView> {
                               ),
                             ),
                           ),
-                          (context.width * 0.02).widthBox,
+                          12.widthBox,
                           Expanded(
                             child: TextFormField(
                               validator: (value) => AppValidators.confirmPasswordValidator(value,viewModel.passwordController,context),
@@ -140,7 +140,7 @@ class _SignupViewState extends State<SignupView> {
                           ),
                         ],
                       ),
-                      (context.height * 0.03).heightBox,
+                      20.heightBox,
                       TextFormField(
                         validator: (value) => AppValidators.phoneNumberValidator(value, context),
                         controller: viewModel.phoneNumberController,
@@ -149,7 +149,7 @@ class _SignupViewState extends State<SignupView> {
                           hintText: context.l10n.phoneNumberHint,
                         ),
                       ),
-                      (context.height * 0.05).heightBox,
+                      25.heightBox,
                       SizedBox(
                         width: context.width,
                         child: ElevatedButton(
@@ -157,7 +157,7 @@ class _SignupViewState extends State<SignupView> {
                           child: Text(context.l10n.signUp),
                         ),
                       ),
-                      (context.height * 0.02).heightBox,
+                     16.heightBox,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -165,7 +165,7 @@ class _SignupViewState extends State<SignupView> {
                             context.l10n.haveAccount,
                             style: AppStyles.mediumBlack16Style,
                           ),
-                          (context.width * 0.02).widthBox,
+                          8.widthBox,
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, AppRoutes.loginScreen);
