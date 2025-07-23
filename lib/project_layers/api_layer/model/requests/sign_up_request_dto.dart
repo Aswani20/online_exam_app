@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'sign_up_request.g.dart';
+
+part 'sign_up_request_dto.g.dart';
 
 @JsonSerializable()
 class SignUpRequestDto {
@@ -23,6 +24,5 @@ class SignUpRequestDto {
 
   factory SignUpRequestDto.fromJson(Map<String, dynamic> json) =>
       _$SignUpRequestDtoFromJson(json);
-
   Map<String, dynamic> toJson() => _$SignUpRequestDtoToJson(this);
 }

@@ -7,9 +7,15 @@ abstract class AppTheme {
   static ThemeData getTheme({required ColorScheme colorScheme,required Color textFormFieldBorderColor}) {
     return ThemeData(
       colorScheme: colorScheme,
+      appBarTheme: AppBarTheme(
+        centerTitle: false,
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.black,
+        elevation: 0,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(18),
           backgroundColor: AppColors.blue,
           foregroundColor: AppColors.white,
           disabledBackgroundColor: AppColors.black[30],

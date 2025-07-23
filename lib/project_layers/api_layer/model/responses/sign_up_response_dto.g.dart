@@ -1,10 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_dto.dart';
+part of 'sign_up_response_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
+
+SignUpResponseDto _$SignUpResponseDtoFromJson(Map<String, dynamic> json) =>
+    SignUpResponseDto(
+      message: json['message'] as String?,
+      token: json['token'] as String?,
+      user: json['user'] == null
+          ? null
+          : UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      code: (json['code'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$SignUpResponseDtoToJson(SignUpResponseDto instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'token': instance.token,
+      'user': instance.user,
+      'code': instance.code,
+    };
 
 UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
   username: json['username'] as String?,
