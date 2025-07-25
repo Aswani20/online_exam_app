@@ -202,7 +202,7 @@ class _SignupViewState extends State<SignupView> {
                               onTap: () {
                                 Navigator.pushNamed(
                                   context,
-                                  AppRoutes.loginScreen,
+                                  AppRoutes.forgetPasswordScreen,
                                 );
                               },
                               child: Text(
@@ -227,7 +227,8 @@ class _SignupViewState extends State<SignupView> {
       listener: (context, state) {
         if (state is SignUpLoadingState) {
           DialogUtils.showLoading(context: context, loadingMessage: "loading");
-        } else if (state is SignUpSuccessState) {
+        }
+        else if (state is SignUpSuccessState) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
