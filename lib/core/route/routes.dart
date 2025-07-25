@@ -5,6 +5,7 @@ import 'package:online_exam_app/core/theme/app_assets.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
+import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/forget_password_screen.dart';
 import '../../project_layers/presentation_layer/authentication/signup/signup_view.dart';
 
 abstract class Routes {
@@ -12,11 +13,12 @@ abstract class Routes {
     final url = Uri.parse(settings.name ?? "/");
     switch (url.path) {
       case AppRoutes.signUpScreen:
-      return MaterialPageRoute(builder: (_) => SignupView());
+        return MaterialPageRoute(builder: (_) => SignupView());
+      case AppRoutes.forgetPasswordScreen:
+        return MaterialPageRoute(builder: (_) => ForgetPassWordScreen());
+
       default:
-        return MaterialPageRoute(
-          builder: (context) => NotFoundScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => NotFoundScreen());
     }
   }
 }
@@ -46,9 +48,13 @@ class NotFoundScreen extends StatelessWidget {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       FadeAnimatedText(
-                          "404 Not Found ",
-                          textStyle: TextStyle(fontWeight: FontWeight.w700,fontSize: 50,color: AppColors.white),
-                          textAlign: TextAlign.center
+                        "404 Not Found ",
+                        textStyle: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 50,
+                          color: AppColors.white,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -73,7 +79,10 @@ class NotFoundScreen extends StatelessWidget {
                   width: context.width * 0.6,
                   child: FilledButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        AppRoutes.loginScreen,
+                      );
                     },
                     child: Text("Go to Home"),
                   ),

@@ -69,12 +69,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterName => 'Please enter name';
 
   @override
-  String get nameMustBeMoreThan3Characters =>
-      'Name must be more than 3 characters';
+  String get nameMustBeMoreThan3Characters => 'Name must be more than 3 characters';
 
   @override
-  String get passwordMustContainUpperLowerAndSpecialCharacter =>
-      'Password must contain upper, lower, and special character';
+  String get passwordMustContainUpperLowerAndSpecialCharacter => 'Password must contain upper, lower, and special character';
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
@@ -86,13 +84,68 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterYourEmail => 'Please enter your email';
 
   @override
-  String get emailMustBeLikeThisExampleGmailCom =>
-      'Email must be like this \"example@gmail.com';
+  String get emailMustBeLikeThisExampleGmailCom => 'Email must be like this \"example@gmail.com';
 
   @override
   String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
 
   @override
-  String get enterAValidEgyptianPhoneNumber =>
-      'Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)';
+  String get enterAValidEgyptianPhoneNumber => 'Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)';
+
+  @override
+  String get forget_password => 'Forget password';
+
+  @override
+  String get enter_your_email_associated => 'please enter your email associated to\n your account';
+
+  @override
+  String get continue_btn => 'Continue';
+
+  @override
+  String get email_verification => 'Email Verification';
+
+  @override
+  String get enter_code_sent_to_email => 'Please enter your code that send to your email address ';
+
+  @override
+  String get didnt_receive_code => 'Didn\'t receive the code?';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String get invalid_code => '❗Invalid code';
+
+  @override
+  String get reset_password => 'Reset_password';
+
+  @override
+  String get reset_password_body => 'Password must not be empty and must contain\n 6 characters with upper case letter and one\n number at least';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get enter_your_password => 'Enter your password';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get network_error => 'No internet connection';
+
+  @override
+  String get server_error => 'Server error';
+
+  @override
+  String get reset_pass_success => 'Password reset successfully';
+
+  @override
+  String get otp_resend_to_mail => 'OTP resent to your email successfully\n Please check your email';
 }

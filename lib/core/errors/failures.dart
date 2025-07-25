@@ -1,4 +1,4 @@
-abstract class Failures{
+abstract class Failures {
   String errorMessage;
   Failures({required this.errorMessage});
 }
@@ -9,4 +9,8 @@ class ServerError extends Failures {
 
 class NetworkError extends Failures {
   NetworkError({required super.errorMessage});
+}
+
+class UserError extends Failures {
+  UserError({required super.errorMessage});
 }

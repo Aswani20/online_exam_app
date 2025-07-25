@@ -62,8 +62,7 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +82,17 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
+    Locale('en')
   ];
 
   /// No description provided for @appName.
@@ -265,10 +262,123 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)'**
   String get enterAValidEgyptianPhoneNumber;
+
+  /// No description provided for @forget_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password'**
+  String get forget_password;
+
+  /// No description provided for @enter_your_email_associated.
+  ///
+  /// In en, this message translates to:
+  /// **'please enter your email associated to\n your account'**
+  String get enter_your_email_associated;
+
+  /// No description provided for @continue_btn.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continue_btn;
+
+  /// No description provided for @email_verification.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verification'**
+  String get email_verification;
+
+  /// No description provided for @enter_code_sent_to_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your code that send to your email address '**
+  String get enter_code_sent_to_email;
+
+  /// No description provided for @didnt_receive_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code?'**
+  String get didnt_receive_code;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @invalid_code.
+  ///
+  /// In en, this message translates to:
+  /// **'❗Invalid code'**
+  String get invalid_code;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset_password'**
+  String get reset_password;
+
+  /// No description provided for @reset_password_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must not be empty and must contain\n 6 characters with upper case letter and one\n number at least'**
+  String get reset_password_body;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @enter_your_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enter_your_password;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
+  /// No description provided for @network_error.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get network_error;
+
+  /// No description provided for @server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error'**
+  String get server_error;
+
+  /// No description provided for @reset_pass_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset successfully'**
+  String get reset_pass_success;
+
+  /// No description provided for @otp_resend_to_mail.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP resent to your email successfully\n Please check your email'**
+  String get otp_resend_to_mail;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -277,26 +387,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar':
-      return AppLocalizationsAr();
-    case 'en':
-      return AppLocalizationsEn();
+    case 'ar': return AppLocalizationsAr();
+    case 'en': return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+    'that was used.'
   );
 }
