@@ -10,7 +10,8 @@ class PasteInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    if (newValue.text.length > oldValue.text.length) {
+    // Detect if the change is due to a paste action
+    if (newValue.text.length > oldValue.text.length + 1) {
       Clipboard.getData(Clipboard.kTextPlain).then((clipboardData) {
         if (clipboardData != null) {
           onPaste(clipboardData.text ?? '');
