@@ -76,6 +76,15 @@ class ForgetPassViewModel extends Cubit<ForgetPassStates> {
 
   bool otpBtnEnabled = false;
 
+  void otpTextFieldOnChange(String value, int index, BuildContext context) {
+    if (value.length == 1 && index < 5) {
+      FocusScope.of(context).requestFocus(otpFocusNodes[index + 1]);
+    } else if (value.isEmpty && index > 0) {
+      FocusScope.of(context).requestFocus(otpFocusNodes[index - 1]);
+    }
+    validateOtpBtn();
+  }
+
   void validateOtpBtn() {
     otpBtnEnabled =
         !otpControllers.any((controller) => controller.text.isEmpty);

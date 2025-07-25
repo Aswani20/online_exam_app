@@ -114,16 +114,12 @@ class OtpBody extends StatelessWidget {
                                     : OutlineInputBorder(),
                           ),
                           onChanged: (value) {
-                            if (value.length == 1 && index < 5) {
-                              FocusScope.of(context).requestFocus(
-                                viewModel.otpFocusNodes[index + 1],
-                              );
-                            } else if (value.isEmpty && index > 0) {
-                              FocusScope.of(context).requestFocus(
-                                viewModel.otpFocusNodes[index - 1],
-                              );
-                            }
-                            viewModel.validateOtpBtn();
+                            // Handle text field change
+                            viewModel.otpTextFieldOnChange(
+                              value,
+                              index,
+                              context,
+                            );
                           },
                         ),
                       );
