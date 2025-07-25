@@ -17,3 +17,9 @@ class SignUpSuccessState extends SignUpStates{
   SignUpResponseEntity responseEntity;
   SignUpSuccessState({required this.responseEntity});
 }
+
+class SignUpFormInteractionState extends SignUpStates {
+  final bool isButtonEnabled;
+
+  SignUpFormInteractionState({required this.isButtonEnabled});
+}
