@@ -202,7 +202,7 @@ class _SignupViewState extends State<SignupView> {
                               onTap: () {
                                 Navigator.pushNamed(
                                   context,
-                                  AppRoutes.loginScreen,
+                                  AppRoutes.forgetPasswordScreen,
                                 );
                               },
                               child: Text(
