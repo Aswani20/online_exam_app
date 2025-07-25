@@ -26,5 +26,26 @@
    "pleaseEnterYourEmail" : "Please enter your email",
    "emailMustBeLikeThisExampleGmailCom" : "Email must be like this \"example@gmail.com",
    "pleaseEnterYourPhoneNumber" : "Please enter your phone number",
-   "enterAValidEgyptianPhoneNumber" : "Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)"
+   "enterAValidEgyptianPhoneNumber" : "Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)",
+   "forget_password": "Forget password",
+   "enter_your_email_associated": "please enter your email associated to\n your account",
+   "continue_btn": "Continue",
+   "email_verification": "Email Verification",
+   "enter_code_sent_to_email": "Please enter your code that send to your email address ",
+   "didnt_receive_code": "Didn't receive the code?",
+   "resend": "Resend",
+   "invalid_code": "❗Invalid code",
+   "reset_password": "Reset_password",
+   "reset_password_body": "Password must not be empty and must contain\n 6 characters with upper case letter and one\n number at least",
+   "new_password": "New Password",
+   "enter_your_password" : "Enter your password",
+   "loading" : "Loading...",
+    "error" : "Error",
+    "ok" : "Ok",
+    "network_error" : "No internet connection",
+    "server_error" : "Server error",
+   "reset_pass_success" : "Password reset successfully",
+   "otp_resend_to_mail": "OTP resent to your email successfully\n Please check your email"
+
+
 }

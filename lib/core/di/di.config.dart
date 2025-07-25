@@ -24,8 +24,16 @@ import '../../project_layers/data_layer/repositories/signup_repo_impl.dart'
     as _i731;
 import '../../project_layers/domain_layer/repositories/signup_repo.dart'
     as _i793;
+import '../../project_layers/domain_layer/use_casses/forget_pass_use_case.dart'
+    as _i1020;
+import '../../project_layers/domain_layer/use_casses/otp_use_case.dart'
+    as _i437;
+import '../../project_layers/domain_layer/use_casses/reset_pass_use_case.dart'
+    as _i764;
 import '../../project_layers/domain_layer/use_casses/sign_up_use_case.dart'
     as _i973;
+import '../../project_layers/presentation_layer/authentication/forget_password/cubit/forget_pass_view_model.dart'
+    as _i91;
 import '../../project_layers/presentation_layer/authentication/signup/cubit/signup_view_model.dart'
     as _i517;
 import 'modules/dio_module.dart' as _i983;
@@ -48,7 +56,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
     );
-    gh.factory<_i778.ApiClient>(() => _i778.ApiClient(gh<_i361.Dio>()));
+    gh.singleton<_i778.ApiClient>(() => _i778.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i802.SignupRemoteDataSource>(
       () => _i904.SignupRemoteDataSourceImpl(gh<_i778.ApiClient>()),
     );
@@ -57,6 +65,22 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i973.SignUpUseCase>(
       () => _i973.SignUpUseCase(signupRepo: gh<_i793.SignupRepo>()),
+    );
+    gh.factory<_i1020.ForgetPassUseCase>(
+      () => _i1020.ForgetPassUseCase(signupRepo: gh<_i793.SignupRepo>()),
+    );
+    gh.factory<_i437.OtpUseCase>(
+      () => _i437.OtpUseCase(signupRepo: gh<_i793.SignupRepo>()),
+    );
+    gh.factory<_i764.ResetPassUseCase>(
+      () => _i764.ResetPassUseCase(signupRepo: gh<_i793.SignupRepo>()),
+    );
+    gh.factory<_i91.ForgetPassViewModel>(
+      () => _i91.ForgetPassViewModel(
+        forgetPassUseCase: gh<_i1020.ForgetPassUseCase>(),
+        otpUseCase: gh<_i437.OtpUseCase>(),
+        resetPassUseCase: gh<_i764.ResetPassUseCase>(),
+      ),
     );
     gh.factory<_i517.SignupViewModel>(
       () => _i517.SignupViewModel(signUpUseCase: gh<_i973.SignUpUseCase>()),

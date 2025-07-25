@@ -10,9 +10,10 @@ SignUpResponseDto _$SignUpResponseDtoFromJson(Map<String, dynamic> json) =>
     SignUpResponseDto(
       message: json['message'] as String?,
       token: json['token'] as String?,
-      user: json['user'] == null
-          ? null
-          : UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      user:
+          json['user'] == null
+              ? null
+              : UserDto.fromJson(json['user'] as Map<String, dynamic>),
       code: (json['code'] as num?)?.toInt(),
     );
 

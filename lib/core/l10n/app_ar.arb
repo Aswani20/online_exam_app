@@ -26,5 +26,26 @@
   "pleaseEnterYourEmail" : "ادخل البريد الالكتروني",
   "emailMustBeLikeThisExampleGmailCom" : "البريد الالكتروني يجب ان يكون  \"example@gmail.com",
   "pleaseEnterYourPhoneNumber" : "ادخل رقم الهاتف ",
-  "enterAValidEgyptianPhoneNumber" : "ادخل رفم هاتف مصري  (e.g., 01xxxxxxxxx)"
+  "enterAValidEgyptianPhoneNumber" : "ادخل رفم هاتف مصري  (e.g., 01xxxxxxxxx)",
+  "forget_password": "نسيت كلمة المرور",
+  "enter_your_email_associated": "أدخل بريدك الالكتروني\n المرتبط بالحساب",
+  "continue_btn": "استمرار",
+  "email_verification": "تحقق البريد الالكتروني",
+  "enter_code_sent_to_email": "الرجاء إدخال الرمز المرسل إلى بريدك الإلكتروني ",
+  "didnt_receive_code": "لم تستلم الرمز؟",
+  "resend": "إعادة الإرسال",
+  "invalid_code": "الكود غير صحيح❗",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "reset_password_body": "كلمة المرور يجب الا تكون فارغه وأن تحتوي على\n 6 أحرف منها حرف كبير \nورقم واحد على الأقل",
+  "new_password": "كلمة المرور الجديدة",
+  "enter_your_password" : "أدخل كلمة المرور الخاصة بك",
+  "loading" : "جاري التحميل...",
+  "error" : "Error",
+  "ok" : "Ok",
+  "network_error" : "لا يوجد اتصال بالانترنت",
+    "server_error" : "خطأ في الخادم",
+  "reset_pass_success" : "تم تغيير كلمة المرور بنجاح",
+  "otp_resend_to_mail": "تم إعادة ارسال كود التحقق بنجاح\n رجاء التحقق من البريد الالكتروني الخاص بك"
+
+
 }

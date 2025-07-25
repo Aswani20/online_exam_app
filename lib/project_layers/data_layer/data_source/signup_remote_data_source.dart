@@ -2,8 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_response_entity.dart';
 
-abstract class SignupRemoteDataSource{
-  Future<Either<Failures,SignUpResponseEntity>> signup({
+import '../../domain_layer/entities/forget_pass_response_entity.dart';
+import '../../domain_layer/entities/otp_response_entity.dart';
+import '../../domain_layer/entities/reset_pass_response_entity.dart';
+
+abstract class SignupRemoteDataSource {
+  Future<Either<Failures, SignUpResponseEntity>> signup({
     required String username,
     required String firstName,
     required String lastName,
@@ -11,5 +15,23 @@ abstract class SignupRemoteDataSource{
     required String password,
     required String rePassword,
     required String phone,
+  });
+
+  Future<Either<ForgetPassResponseEntity, Failures>> forgetPassword({
+    required String email,
+    String? networkError,
+    String? serverError,
+  });
+
+  Future<Either<OtpResponseEntity, Failures>> otpVerify({
+    required String code,
+    String? networkError,
+    String? serverError,
+  });
+  Future<Either<ResetPassResponseEntity, Failures>> resetPass({
+    required String email,
+    required String newPassword,
+    String? networkError,
+    String? serverError,
   });
 }

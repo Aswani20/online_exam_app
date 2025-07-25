@@ -10,10 +10,8 @@ import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/cubit/sign_up_states.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/cubit/signup_view_model.dart';
 
-
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
-
   @override
   State<SignupView> createState() => _SignupViewState();
 }
@@ -25,23 +23,20 @@ class _SignupViewState extends State<SignupView> {
   Widget build(BuildContext context) {
     return BlocListener<SignupViewModel, SignUpStates>(
       bloc: viewModel,
-      listener: (context,state){
-        if(state is SignUpLoadingState){
+      listener: (context, state) {
+        if (state is SignUpLoadingState) {
           DialogUtils.showLoading(context: context, loadingMessage: "loading");
-        }else if(state is SignUpSuccessState){
+        } else if (state is SignUpSuccessState) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
-            content:
-            state.responseEntity.message ??
-               "Success",
-            posActions:"OK",
+            content: state.responseEntity.message ?? "Success",
+            posActions: "OK",
             posFunction: (p0) {
               Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
             },
           );
-        }
-        else if(state is SignUpErrorState){
+        } else if (state is SignUpErrorState) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
@@ -49,7 +44,6 @@ class _SignupViewState extends State<SignupView> {
             negActions: "Ok",
           );
         }
-
       },
       child: Scaffold(
         appBar: AppBar(
@@ -72,7 +66,9 @@ class _SignupViewState extends State<SignupView> {
                   child: Column(
                     children: [
                       TextFormField(
-                        validator: (value) => AppValidators.nonEmptyField(value, context),
+                        validator:
+                            (value) =>
+                                AppValidators.nonEmptyField(value, context),
                         controller: viewModel.userNameController,
                         decoration: InputDecoration(
                           labelText: context.l10n.userName,
@@ -84,7 +80,11 @@ class _SignupViewState extends State<SignupView> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              validator: (value) => AppValidators.nameValidator(value, context),
+                              validator:
+                                  (value) => AppValidators.nameValidator(
+                                    value,
+                                    context,
+                                  ),
                               controller: viewModel.firstNameController,
                               decoration: InputDecoration(
                                 labelText: context.l10n.firstName,
@@ -95,7 +95,11 @@ class _SignupViewState extends State<SignupView> {
                           12.widthBox,
                           Expanded(
                             child: TextFormField(
-                              validator: (value) => AppValidators.nameValidator(value, context),
+                              validator:
+                                  (value) => AppValidators.nameValidator(
+                                    value,
+                                    context,
+                                  ),
                               controller: viewModel.lastNameController,
                               decoration: InputDecoration(
                                 labelText: context.l10n.lastName,
@@ -107,7 +111,9 @@ class _SignupViewState extends State<SignupView> {
                       ),
                       20.heightBox,
                       TextFormField(
-                        validator: (value) => AppValidators.emailValidator(value, context),
+                        validator:
+                            (value) =>
+                                AppValidators.emailValidator(value, context),
                         controller: viewModel.emailController,
                         decoration: InputDecoration(
                           labelText: context.l10n.email,
@@ -119,7 +125,11 @@ class _SignupViewState extends State<SignupView> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              validator: (value) => AppValidators.passwordValidator(value, context),
+                              validator:
+                                  (value) => AppValidators.passwordValidator(
+                                    value,
+                                    context,
+                                  ),
                               controller: viewModel.passwordController,
                               decoration: InputDecoration(
                                 labelText: context.l10n.password,
@@ -130,7 +140,13 @@ class _SignupViewState extends State<SignupView> {
                           12.widthBox,
                           Expanded(
                             child: TextFormField(
-                              validator: (value) => AppValidators.confirmPasswordValidator(value,viewModel.passwordController,context),
+                              validator:
+                                  (value) =>
+                                      AppValidators.confirmPasswordValidator(
+                                        value,
+                                        viewModel.passwordController,
+                                        context,
+                                      ),
                               controller: viewModel.confirmPasswordController,
                               decoration: InputDecoration(
                                 labelText: context.l10n.confirmPassword,
@@ -142,7 +158,11 @@ class _SignupViewState extends State<SignupView> {
                       ),
                       20.heightBox,
                       TextFormField(
-                        validator: (value) => AppValidators.phoneNumberValidator(value, context),
+                        validator:
+                            (value) => AppValidators.phoneNumberValidator(
+                              value,
+                              context,
+                            ),
                         controller: viewModel.phoneNumberController,
                         decoration: InputDecoration(
                           labelText: context.l10n.phoneNumber,
@@ -157,7 +177,7 @@ class _SignupViewState extends State<SignupView> {
                           child: Text(context.l10n.signUp),
                         ),
                       ),
-                     16.heightBox,
+                      16.heightBox,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -168,7 +188,10 @@ class _SignupViewState extends State<SignupView> {
                           8.widthBox,
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.loginScreen);
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.loginScreen,
+                              );
                             },
                             child: Text(
                               context.l10n.login,

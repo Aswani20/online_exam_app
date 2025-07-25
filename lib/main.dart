@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
       locale: Locale("en"),
       theme: AppTheme.lightTheme,
       onGenerateRoute: Routes.generateRoute,
-      initialRoute: AppRoutes.signUpScreen,
+      initialRoute: AppRoutes.forgetPasswordScreen,
     );
   }
 }
-
