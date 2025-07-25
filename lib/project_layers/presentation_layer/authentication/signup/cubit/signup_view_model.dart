@@ -9,6 +9,7 @@ class SignupViewModel extends Cubit<SignUpStates> {
   SignUpUseCase signUpUseCase;
 
   SignupViewModel({required this.signUpUseCase}) : super(SignUpInitState());
+
   TextEditingController userNameController = TextEditingController(
     text: "Aswani20",
   );
@@ -32,6 +33,10 @@ class SignupViewModel extends Cubit<SignUpStates> {
   );
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  bool isEnable = false;
+  bool isObscureText = true;
+  bool isConfirmObscureText = true;
+
   void signUp() async {
     if (formKey.currentState!.validate()) {
       emit(SignUpLoadingState());
@@ -51,4 +56,24 @@ class SignupViewModel extends Cubit<SignUpStates> {
       );
     }
   }
+
+  void checkFormValidity() {
+    if(userNameController.text.isNotEmpty &&
+        firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty &&
+        confirmPasswordController.text.isNotEmpty &&
+        phoneNumberController.text.isNotEmpty){
+      isEnable = true;
+      emit(SignUpFormInteractionState(isButtonEnabled: isEnable));
+    }else{
+      isEnable = false;
+      emit(SignUpFormInteractionState(isButtonEnabled: isEnable));
+    }
+
+
+
+  }
+
 }
