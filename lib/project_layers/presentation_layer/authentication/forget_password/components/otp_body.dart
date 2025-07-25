@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:flutter/services.dart';
 import '../../../../../core/dialog/dialog.dart';
+import '../../../../../core/input_formatter/paste_input_formatter.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_styles.dart';
 import '../cubit/forget_pass_states.dart';
@@ -81,6 +82,9 @@ class OtpBody extends StatelessWidget {
                           obscureText: true,
                           textAlignVertical: TextAlignVertical.center,
                           style: AppStyles.regularBlack14Style,
+                          inputFormatters: [
+                            PasteInputFormatter(onPaste: viewModel.onPasteOtp),
+                          ],
                           decoration: InputDecoration(
                             counterText: '',
                             filled: true,

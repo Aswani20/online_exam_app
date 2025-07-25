@@ -24,9 +24,7 @@ class ForgetPassViewModel extends Cubit<ForgetPassStates> {
   PageController pageController = PageController(initialPage: 0);
 
   // forgetPassword body attributes and behaviors
-  TextEditingController email = TextEditingController(
-    text: "adekheel@gmail.com",
-  );
+  TextEditingController email = TextEditingController();
   GlobalKey<FormState> forgetPassFormKey = GlobalKey<FormState>();
   bool forgetPassBtnEnabled = false;
 
@@ -89,6 +87,19 @@ class ForgetPassViewModel extends Cubit<ForgetPassStates> {
     otpBtnEnabled =
         !otpControllers.any((controller) => controller.text.isEmpty);
     emit(OtpBtnValidationState(isBtnEnabled: otpBtnEnabled));
+  }
+
+  void onPasteOtp(pastedText) {
+    final characters = pastedText.split('');
+    for (int i = 0; i < otpControllers.length; i++) {
+      if (i < characters.length) {
+        otpControllers[i].text = characters[i];
+      } else {
+        otpControllers[i].clear();
+      }
+    }
+    otpFocusNodes.last.requestFocus();
+    validateOtpBtn();
   }
 
   void otpValidationRequest(BuildContext context) async {
