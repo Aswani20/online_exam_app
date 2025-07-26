@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
@@ -77,14 +78,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i594.SignInUseCase>(
       () => _i594.SignInUseCase(signInRepo: gh<_i596.SigninRepoImpl>()),
     );
-    gh.factory<_i596.SigninRepoImpl>(
-      () => _i596.SigninRepoImpl(gh<_i952.SigninRemoteDataSource>()),
-    );
     gh.factory<_i793.SignupRepo>(
       () => _i731.SignupRepoImpl(gh<_i802.SignupRemoteDataSource>()),
     );
     gh.factory<_i979.SigninViewModel>(
       () => _i979.SigninViewModel(signInUseCase: gh<_i594.SignInUseCase>()),
+    );
+    gh.factory<_i596.SigninRepoImpl>(
+      () => _i596.SigninRepoImpl(
+        gh<_i952.SigninRemoteDataSource>(),
+        gh<_i778.ApiClient>(),
+        gh<_i558.FlutterSecureStorage>(),
+      ),
     );
     gh.factory<_i835.ForgetPassUseCase>(
       () => _i835.ForgetPassUseCase(signupRepo: gh<_i793.SignupRepo>()),
