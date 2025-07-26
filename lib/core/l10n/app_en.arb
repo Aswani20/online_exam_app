@@ -16,6 +16,7 @@
    "phoneNumberHint" : "Enter your phone number",
    "signUp" : "Sign Up",
    "haveAccount" : "Already have an account?",
+   "notHaveAccount": "don't have an account?",
    "login" : "Login",
    "pleaseEnterValue" : "Please enter value",
    "pleaseEnterName" : "Please enter name" ,

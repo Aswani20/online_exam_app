@@ -60,6 +60,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get haveAccount => 'هل لديك حساب بالفعل؟';
 
   @override
+  String get notHaveAccount => 'don\'t have an account?';
+
+  @override
   String get login => 'تسجيل الدخول';
 
   @override

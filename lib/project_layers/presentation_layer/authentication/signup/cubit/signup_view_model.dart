@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/project_layers/domain_layer/use_casses/sign_up_use_case.dart';
+import 'package:online_exam_app/project_layers/domain_layer/use_cases/sign_up_use_case.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/cubit/sign_up_states.dart';
 
 @injectable

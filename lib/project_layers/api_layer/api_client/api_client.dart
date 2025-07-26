@@ -3,6 +3,8 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/forget_pass_request_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/otp_request_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/reset_pass_request_dto.dart';
+import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_in_request_dto.dart';
+import 'package:online_exam_app/project_layers/api_layer/model/responses/Sign_in_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/responses/forget_pass_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/responses/sign_up_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_up_request_dto.dart';
@@ -22,6 +24,11 @@ abstract class ApiClient {
   Future<HttpResponse<SignUpResponseDto>> signUp({
     @Body() required SignUpRequestDto request,
   });
+
+  @POST("/v1/auth/signin")
+  Future<HttpResponse<SigninResponseDto>> signin({
+    @Body() required SigninRequestDto request,
+});
 
   @POST("/v1/auth/forgotPassword")
   Future<HttpResponse<ForgetPassResponseDto>> forgetPass({

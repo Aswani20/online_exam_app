@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/core/services/auth_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @module
 abstract class DioModule{
   @singleton
-  Dio provideDio(){
+  Dio provideDio(AuthInterceptor){
     Dio dio = Dio(
       BaseOptions(
         baseUrl: 'https://exam.elevateegy.com/api/',
@@ -16,6 +17,7 @@ abstract class DioModule{
       )
     );
     dio.interceptors.add(PrettyDioLogger());
+    dio.interceptors.add(AuthInterceptor());
     return dio;
   }
 
@@ -29,4 +31,7 @@ abstract class DioModule{
       responseHeader: true,
     );
   }
+
+  @singleton
+  AuthInterceptor get authInterceptor => AuthInterceptor();
 }

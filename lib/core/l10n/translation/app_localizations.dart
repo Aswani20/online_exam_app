@@ -200,6 +200,12 @@ abstract class AppLocalizations {
   /// **'Already have an account?'**
   String get haveAccount;
 
+  /// No description provided for @notHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'don\'t have an account?'**
+  String get notHaveAccount;
+
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
