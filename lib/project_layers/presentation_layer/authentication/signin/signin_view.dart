@@ -64,6 +64,13 @@ class _SigninViewState extends State<SigninView> {
                           ),
                         ),
                         25.heightBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(onTap: (){Navigator.pushNamed(context, AppRoutes.forgetPasswordScreen);},child: Text("${context.l10n.forget_password}?",style: AppStyles.mediumBlack16Style.copyWith(decoration: TextDecoration.underline))),
+                          ],
+                        ),
+                        30.heightBox,
                         SizedBox(
                           width: context.width,
                           child: ElevatedButton(
@@ -90,7 +97,7 @@ class _SigninViewState extends State<SigninView> {
                                 );
                               },
                               child: Text(
-                                context.l10n.login,
+                                context.l10n.signUp,
                                 style: AppStyles.mediumBlack16Style.copyWith(
                                   color: AppColors.blue,
                                   decoration: TextDecoration.underline,
@@ -118,7 +125,7 @@ class _SigninViewState extends State<SigninView> {
             content: state.responseEntity.message ?? "Success",
               posActions: "OK",
               posFunction: (p0) {
-                Navigator.pushReplacementNamed(context, SignupView() as String /*AppRoutes.loginScreen*/);
+                Navigator.pushReplacementNamed(context, AppRoutes.signUpScreen /*AppRoutes.loginScreen*/);
               },
           );
         } else if(state is SigninErrorState){

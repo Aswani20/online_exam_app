@@ -11,7 +11,7 @@ class SignInResponseEntity {
 }
 
 class UserEntity {
-  final String? Id;
+  final String? id;
   final String? username;
   final String? firstName;
   final String? lastName;
@@ -22,7 +22,7 @@ class UserEntity {
   final String? createdAt;
 
   UserEntity ({
-    this.Id,
+    this.id,
     this.username,
     this.firstName,
     this.lastName,

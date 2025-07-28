@@ -1,9 +1,10 @@
 import'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/project_layers/Domain_layer/entities/sign_in_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/use_cases/sign_in_use_case.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../../../../domain_layer/entities/sign_in_response_entity.dart';
 
 part 'signin_states.dart';
 

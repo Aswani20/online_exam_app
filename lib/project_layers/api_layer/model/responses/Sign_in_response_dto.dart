@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/project_layers/Domain_layer/entities/sign_in_response_entity.dart';
 
+import '../../../domain_layer/entities/sign_in_response_entity.dart';
 part 'Sign_in_response_dto.g.dart';
 
 @JsonSerializable()
@@ -86,7 +86,7 @@ class User {
       phone: phone,
       role: role,
       isVerified: isVerified,
-      Id: Id,
+      id: Id,
       createdAt: createdAt,);
   }
 }

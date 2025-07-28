@@ -1,7 +1,8 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
-import 'package:online_exam_app/project_layers/Domain_layer/entities/sign_in_response_entity.dart';
+
+import '../../domain_layer/entities/sign_in_response_entity.dart';
 
 abstract class SigninRemoteDataSource{
   Future<Either<Failures, SignInResponseEntity>> signin({
