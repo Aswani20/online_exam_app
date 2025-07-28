@@ -15,9 +15,9 @@ class SignInRepoImpl implements SignInRepo {
   SignInRepoImpl(this._remoteDataSource);
 
   @override
-  Future<Either<Failures, SignInResponseEntity>> signIn({
+  Future<Either<Failures, SignInResponseEntity>> signin({
     required String email,
-    required String password,
+    required String password
   }) async {
     var response = await _remoteDataSource.signin(
       email: email,
