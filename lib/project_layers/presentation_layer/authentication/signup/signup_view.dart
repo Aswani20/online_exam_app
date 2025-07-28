@@ -202,7 +202,7 @@ class _SignupViewState extends State<SignupView> {
                               onTap: () {
                                 Navigator.pushNamed(
                                   context,
-                                  AppRoutes.forgetPasswordScreen,
+                                  AppRoutes.loginScreen,
                                 );
                               },
                               child: Text(
@@ -234,7 +234,10 @@ class _SignupViewState extends State<SignupView> {
             content: state.responseEntity.message ?? "Success",
             posActions: "OK",
             posFunction: (p0) {
-              Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+              Navigator.pushReplacementNamed(
+                context,
+                AppRoutes.forgetPasswordScreen
+              );
             },
           );
         } else if (state is SignUpErrorState) {

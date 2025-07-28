@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
-import 'package:online_exam_app/project_layers/domain_layer/use_casses/forget_pass_use_case.dart';
-import 'package:online_exam_app/project_layers/domain_layer/use_casses/reset_pass_use_case.dart';
+import 'package:online_exam_app/project_layers/domain_layer/use_cases/forget_pass_use_case.dart';
+import 'package:online_exam_app/project_layers/domain_layer/use_cases/reset_pass_use_case.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/cubit/forget_pass_states.dart';
 
-import '../../../../domain_layer/use_casses/otp_use_case.dart';
+import '../../../../domain_layer/use_cases/otp_use_case.dart';
 
 @injectable
 class ForgetPassViewModel extends Cubit<ForgetPassStates> {
