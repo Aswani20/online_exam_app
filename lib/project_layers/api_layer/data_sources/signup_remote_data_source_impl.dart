@@ -6,19 +6,21 @@ import 'package:online_exam_app/project_layers/api_layer/api_client/api_client.d
 import 'package:online_exam_app/project_layers/api_layer/model/requests/forget_pass_request_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/otp_request_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/reset_pass_request_dto.dart';
+import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_in_request_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_up_request_dto.dart';
-import 'package:online_exam_app/project_layers/data_layer/data_source/signup_remote_data_source.dart';
+import 'package:online_exam_app/project_layers/data_layer/data_source/auth_remote_data_source.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/forget_pass_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/otp_response_entity.dart';
+import 'package:online_exam_app/project_layers/domain_layer/entities/sign_in_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_response_entity.dart';
 
 import '../../domain_layer/entities/reset_pass_response_entity.dart';
 
-@Injectable(as: SignupRemoteDataSource)
-class SignupRemoteDataSourceImpl extends SignupRemoteDataSource {
+@Injectable(as: AuthRemoteDataSource)
+class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   ApiClient _apiClient;
 
-  SignupRemoteDataSourceImpl(this._apiClient);
+  AuthRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<Either<Failures, SignUpResponseEntity>> signup({
@@ -155,6 +157,39 @@ class SignupRemoteDataSourceImpl extends SignupRemoteDataSource {
       );
     } catch (e) {
       return right(ServerError(errorMessage: "Unexpected error: $e"));
+    }
+  }
+
+
+  @override
+  Future<Either<Failures, SignInResponseEntity>> signIn({
+    required String email,
+    required String password
+  }) async {
+    try{
+      var response = await _apiClient.signin(
+          request: SigninRequestDto(
+            email: email,
+            password: password,
+          )
+      );
+      var statusCode = response.response.statusCode;
+      final token = response.data.token;
+      if (statusCode! >= 200 && statusCode < 300) {
+        return Right(response.data.toEntity());
+      } else {
+        return Left(
+            ServerError(errorMessage: response.data.message ?? "Server Error")
+        );
+      }
+    } on DioException catch(e){
+      return left(
+          ServerError(
+              errorMessage: e.response?.data.toString() ?? "Unknown Dio error"
+          )
+      );
+    } catch(e){
+      return left(ServerError(errorMessage: "Unexpected error: $e"));
     }
   }
 }

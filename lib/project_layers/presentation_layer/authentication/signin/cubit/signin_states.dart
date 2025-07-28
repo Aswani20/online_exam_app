@@ -1,22 +1,22 @@
-part of 'signin_viewModel.dart';
+part of 'sign_in_view_model.dart';
 
-abstract class SigninState {}
+abstract class SignInState {}
 
-class SigninInitState extends SigninState {}
+class SignInInitState extends SignInState {}
 
-class SigninLoadingState extends SigninState {}
+class SignInLoadingState extends SignInState {}
 
-class SigninErrorState extends SigninState {
+class SignInErrorState extends SignInState {
   String errMessage;
-  SigninErrorState({required this.errMessage});
+  SignInErrorState({required this.errMessage});
 }
 
-class SigninSuccessState extends SigninState {
+class SignInSuccessState extends SignInState {
   SignInResponseEntity responseEntity;
-  SigninSuccessState({required this.responseEntity});
+  SignInSuccessState({required this.responseEntity});
 }
 
-class SigninFormInteractionState extends SigninState {
+class SignInFormInteractionState extends SignInState {
   final bool isButtonEnabled;
-  SigninFormInteractionState({required this.isButtonEnabled});
+  SignInFormInteractionState({required this.isButtonEnabled});
 }

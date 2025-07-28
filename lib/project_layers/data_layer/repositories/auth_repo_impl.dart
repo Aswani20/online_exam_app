@@ -1,18 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
-import 'package:online_exam_app/project_layers/data_layer/data_source/signup_remote_data_source.dart';
+import 'package:online_exam_app/project_layers/data_layer/data_source/auth_remote_data_source.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/forget_pass_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/otp_response_entity.dart';
+import 'package:online_exam_app/project_layers/domain_layer/entities/sign_in_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_response_entity.dart';
-import 'package:online_exam_app/project_layers/domain_layer/repositories/signup_repo.dart';
+import 'package:online_exam_app/project_layers/domain_layer/repositories/auth_repo.dart';
 
 import '../../domain_layer/entities/reset_pass_response_entity.dart';
 
-@Injectable(as: SignupRepo)
-class SignupRepoImpl implements SignupRepo {
-  final SignupRemoteDataSource _remoteDataSource;
-  SignupRepoImpl(this._remoteDataSource);
+@Injectable(as: AuthRepo)
+class AuthRepoImpl implements AuthRepo {
+  final AuthRemoteDataSource _remoteDataSource;
+  AuthRepoImpl(this._remoteDataSource);
 
   @override
   Future<Either<Failures, SignUpResponseEntity>> signup({
@@ -102,5 +103,18 @@ class SignupRepoImpl implements SignupRepo {
         return Right(error);
       },
     );
+  }
+
+  @override
+  Future<Either<Failures, SignInResponseEntity>> signIn({
+    required String email,
+    required String password,
+  }) async {
+    var response = await _remoteDataSource.signIn(
+      email: email,
+      password: password,
+    );
+
+    return response.fold((error) => Left(error), (response) => Right(response));
   }
 }
