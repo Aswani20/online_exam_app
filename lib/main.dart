@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Routes.generateRoute,
       initialRoute: AppRoutes.loginScreen,
       routes: {
-        AppRoutes.loginScreen: (context) => SigninView(),
+        AppRoutes.loginScreen: (context) => SignInView(),
         AppRoutes.signUpScreen: (context) => SignupView(),
         AppRoutes.forgetPasswordScreen: (context) => ForgetPassWordScreen(),
       },

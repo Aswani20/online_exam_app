@@ -7,22 +7,22 @@ import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/app_validator.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
-import 'package:online_exam_app/project_layers/presentation_layer/authentication/signin/cubit/signin_viewModel.dart';
-import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/signup_view.dart';
+import 'package:online_exam_app/project_layers/presentation_layer/authentication/signin/cubit/sign_in_view_model.dart';
 
-class SigninView extends StatefulWidget {
-  const SigninView({super.key});
+class SignInView extends StatefulWidget {
+  const SignInView({super.key});
 
   @override
-  State<SigninView> createState() => _SigninViewState();
+  State<SignInView> createState() => _SignInViewState();
 }
 
-class _SigninViewState extends State<SigninView> {
-  SigninViewModel signinViewModel = getIt<SigninViewModel>();
+class _SignInViewState extends State<SignInView> {
+  SignInViewModel signInViewModel = getIt<SignInViewModel>();
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SigninViewModel, SigninState>(
-      bloc: signinViewModel,
+    return BlocConsumer<SignInViewModel, SignInState>(
+      bloc: signInViewModel,
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -41,13 +41,16 @@ class _SigninViewState extends State<SigninView> {
                 children: [
                   16.heightBox,
                   Form(
-                    key: signinViewModel.formKey,
+                    key: signInViewModel.formKey,
                     child: Column(
                       children: [
                         TextFormField(
-                          onChanged: (value) => signinViewModel.checkFormValidity(),
-                          validator: (value) => AppValidators.nonEmptyField(value, context),
-                          controller: signinViewModel.emailController,
+                          onChanged:
+                              (value) => signInViewModel.checkFormValidity(),
+                          validator:
+                              (value) =>
+                                  AppValidators.nonEmptyField(value, context),
+                          controller: signInViewModel.emailController,
                           decoration: InputDecoration(
                             labelText: context.l10n.email,
                             hintText: context.l10n.emailHint,
@@ -55,28 +58,62 @@ class _SigninViewState extends State<SigninView> {
                         ),
                         20.heightBox,
                         TextFormField(
-                          onChanged: (value) => signinViewModel.checkFormValidity(),
-                          validator: (value) => AppValidators.passwordValidator(value, context),
-                          controller: signinViewModel.passwordController,
+                          onChanged:
+                              (value) => signInViewModel.checkFormValidity(),
+                          validator:
+                              (value) => AppValidators.passwordValidator(
+                                value,
+                                context,
+                              ),
+                          controller: signInViewModel.passwordController,
+                          obscureText: signInViewModel.isObscureText,
                           decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                signInViewModel.isObscureText =
+                                    !signInViewModel.isObscureText;
+                                setState(() {});
+                              },
+                              icon: Icon(
+                                signInViewModel.isObscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                            ),
                             labelText: context.l10n.password,
-                            hintText: context.l10n.passwordHint
+                            hintText: context.l10n.passwordHint,
                           ),
                         ),
                         25.heightBox,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            GestureDetector(onTap: (){Navigator.pushNamed(context, AppRoutes.forgetPasswordScreen);},child: Text("${context.l10n.forget_password}?",style: AppStyles.mediumBlack16Style.copyWith(decoration: TextDecoration.underline))),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.forgetPasswordScreen,
+                                );
+                              },
+                              child: Text(
+                                "${context.l10n.forget_password}?",
+                                style: AppStyles.mediumBlack16Style.copyWith(
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         30.heightBox,
                         SizedBox(
                           width: context.width,
                           child: ElevatedButton(
-                            onPressed: signinViewModel.isEnable ? () {
-                              signinViewModel.signIn();
-                            } : null,
+                            onPressed:
+                                signInViewModel.isEnable
+                                    ? () {
+                                      signInViewModel.signIn();
+                                    }
+                                    : null,
                             child: Text(context.l10n.login),
                           ),
                         ),
@@ -108,35 +145,38 @@ class _SigninViewState extends State<SigninView> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
         );
       },
-      listener: (context, state){
-        if(state is SigninLoadingState){
+      listener: (context, state) {
+        if (state is SignInLoadingState) {
           DialogUtils.showLoading(context: context, loadingMessage: "loading");
-        } else if(state is SigninSuccessState){
+        } else if (state is SignInSuccessState) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
             content: state.responseEntity.message ?? "Success",
-              posActions: "OK",
-              posFunction: (p0) {
-                Navigator.pushReplacementNamed(context, AppRoutes.signUpScreen /*AppRoutes.loginScreen*/);
-              },
+            posActions: "OK",
+            posFunction: (p0) {
+              Navigator.pushReplacementNamed(
+                context,
+                AppRoutes.signUpScreen /*AppRoutes.loginScreen*/,
+              );
+            },
           );
-        } else if(state is SigninErrorState){
-            DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(
-              context: context,
-              content: state.errMessage,
-              negActions: "OK"
-            );
+        } else if (state is SignInErrorState) {
+          DialogUtils.hideLoading(context);
+          DialogUtils.showMessage(
+            context: context,
+            content: state.errMessage,
+            negActions: "OK",
+          );
         }
-      }
+      },
     );
   }
 }
