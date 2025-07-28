@@ -13,12 +13,11 @@ import 'package:online_exam_app/project_layers/domain_layer/entities/forget_pass
 import 'package:online_exam_app/project_layers/domain_layer/entities/otp_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/sign_in_response_entity.dart';
 import 'package:online_exam_app/project_layers/domain_layer/entities/sign_up_response_entity.dart';
-
 import '../../domain_layer/entities/reset_pass_response_entity.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
-  ApiClient _apiClient;
+  final ApiClient _apiClient;
 
   AuthRemoteDataSourceImpl(this._apiClient);
 

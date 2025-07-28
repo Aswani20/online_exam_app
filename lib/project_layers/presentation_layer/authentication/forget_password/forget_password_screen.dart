@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:online_exam_app/project_layers/domain_layer/use_cases/forget_pass_use_case.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/components/forget_pass_body.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/components/reset_pass_body.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/cubit/forget_pass_view_model.dart';
-import '../../../../core/di/di.dart';
 import '../../../domain_layer/use_cases/otp_use_case.dart';
 import '../../../domain_layer/use_cases/reset_pass_use_case.dart';
 import 'components/otp_body.dart';

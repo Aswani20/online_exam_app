@@ -16,8 +16,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../project_layers/api_layer/api_client/api_client.dart' as _i778;
-import '../../project_layers/api_layer/data_sources/signup_remote_data_source_impl.dart'
-    as _i904;
+import '../../project_layers/api_layer/data_sources/auth_remote_data_source_impl.dart'
+    as _i871;
 import '../../project_layers/data_layer/data_source/auth_remote_data_source.dart'
     as _i956;
 import '../../project_layers/data_layer/repositories/auth_repo_impl.dart'
@@ -64,7 +64,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i778.ApiClient>(() => _i778.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i956.AuthRemoteDataSource>(
-      () => _i904.AuthRemoteDataSourceImpl(gh<_i778.ApiClient>()),
+      () => _i871.AuthRemoteDataSourceImpl(gh<_i778.ApiClient>()),
     );
     gh.factory<_i777.AuthRepo>(
       () => _i511.AuthRepoImpl(gh<_i956.AuthRemoteDataSource>()),
