@@ -8,7 +8,6 @@ import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/app_validator.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signin/cubit/signin_viewModel.dart';
-import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/signup_view.dart';
 
 class SigninView extends StatefulWidget {
   const SigninView({super.key});

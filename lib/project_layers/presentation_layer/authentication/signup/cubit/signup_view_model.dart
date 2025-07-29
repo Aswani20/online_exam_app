@@ -71,9 +71,5 @@ class SignupViewModel extends Cubit<SignUpStates> {
       isEnable = false;
       emit(SignUpFormInteractionState(isButtonEnabled: isEnable));
     }
-
-
-
   }
-
 }
