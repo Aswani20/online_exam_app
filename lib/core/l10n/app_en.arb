@@ -1,5 +1,8 @@
 {
    "appName" : "Online Exam App",
+   "update" : "Update",
+   "profile" : "Profile",
+   "editProfile" : "Edit profile",
    "userName" : "User Name",
    "userNameHint" : "Enter your user name",
    "firstName" : "First Name",
@@ -12,6 +15,7 @@
    "passwordHint" : "Enter password",
    "confirmPassword" : "Confirm Password",
    "confirmPasswordHint" : "Confirm password",
+   "change" : "Change",
    "phoneNumber" : "Phone Number",
    "phoneNumberHint" : "Enter your phone number",
    "signUp" : "Sign Up",

@@ -6,6 +6,8 @@ import 'package:online_exam_app/core/theme/app_theme.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/forget_password_screen.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signin/signin_view.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/signup/signup_view.dart';
+import 'package:online_exam_app/project_layers/presentation_layer/profile/change_password_view.dart';
+import 'package:online_exam_app/project_layers/presentation_layer/profile/profile_view.dart';
 import 'core/l10n/translation/app_localizations.dart';
 
 void main() async {
@@ -31,7 +33,9 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.loginScreen: (context) => SigninView(),
         AppRoutes.signUpScreen: (context) => SignupView(),
+        AppRoutes.profileScreen: (context) => ProfileView(),
         AppRoutes.forgetPasswordScreen: (context) => ForgetPassWordScreen(),
+        AppRoutes.changePasswordScreen: (context) => ChangePasswordView(),
       },
     );
   }

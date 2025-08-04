@@ -6,10 +6,12 @@ import 'package:online_exam_app/project_layers/api_layer/model/requests/reset_pa
 import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_in_request_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/responses/Sign_in_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/responses/forget_pass_response_dto.dart';
+import 'package:online_exam_app/project_layers/api_layer/model/responses/profile_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/responses/sign_up_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_up_request_dto.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../model/requests/profile_request_dto.dart';
 import '../model/responses/otp_response_dto.dart';
 import '../model/responses/reset_pass_response_dto.dart';
 part 'api_client.g.dart';
@@ -19,7 +21,7 @@ part 'api_client.g.dart';
 abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
-
+  // Auth EndPoints
   @POST("/v1/auth/signup")
   Future<HttpResponse<SignUpResponseDto>> signUp({
     @Body() required SignUpRequestDto request,
@@ -43,5 +45,14 @@ abstract class ApiClient {
   @PUT("/v1/auth/resetPassword")
   Future<HttpResponse<ResetPassResponseDto>> resetPass({
     @Body() required ResetPassRequestDto resetPassRequest,
+  });
+
+  // Profile EndPoints
+  @GET("/v1/auth/profileData")
+  Future<HttpResponse<ProfileResponseDto>> getProfile();
+
+  @PUT("/v1/auth/editProfile")
+  Future<HttpResponse<ProfileResponseDto>> editProfile({
+    @Body() required ProfileRequestDto request,
   });
 }

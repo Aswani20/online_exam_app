@@ -12,6 +12,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'Online Exam App';
 
   @override
+  String get update => 'Update';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
   String get userName => 'User Name';
 
   @override
@@ -46,6 +55,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmPasswordHint => 'Confirm password';
+
+  @override
+  String get change => 'Change';
 
   @override
   String get phoneNumber => 'Phone Number';

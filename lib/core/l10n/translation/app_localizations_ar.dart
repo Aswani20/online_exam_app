@@ -12,6 +12,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appName => 'تطبيق الامتحانات ';
 
   @override
+  String get update => 'تحديث';
+
+  @override
+  String get profile => 'الملف الشخصى';
+
+  @override
+  String get editProfile => 'تعديل الملف';
+
+  @override
   String get userName => 'اسم المستخدم';
 
   @override
@@ -46,6 +55,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmPasswordHint => 'ادخل كلمة المرور مره اخري';
+
+  @override
+  String get change => 'تغير';
 
   @override
   String get phoneNumber => 'رقم الهاتف';

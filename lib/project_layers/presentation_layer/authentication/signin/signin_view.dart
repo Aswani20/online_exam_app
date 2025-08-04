@@ -124,7 +124,7 @@ class _SigninViewState extends State<SigninView> {
             content: state.responseEntity.message ?? "Success",
               posActions: "OK",
               posFunction: (p0) {
-                Navigator.pushReplacementNamed(context, AppRoutes.signUpScreen /*AppRoutes.loginScreen*/);
+                Navigator.pushReplacementNamed(context, AppRoutes.profileScreen /*AppRoutes.loginScreen*/);
               },
           );
         } else if(state is SigninErrorState){

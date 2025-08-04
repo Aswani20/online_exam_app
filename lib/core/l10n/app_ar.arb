@@ -1,5 +1,9 @@
 {
   "appName" : "تطبيق الامتحانات ",
+  "update" : "تحديث",
+  "profile" : "الملف الشخصى",
+  "editProfile" : "تعديل الملف",
+  "change" : "تغير",
   "userName" : "اسم المستخدم",
   "userNameHint" : "ادخل اسم المستخدم",
   "firstName" : "الاسم الاول",

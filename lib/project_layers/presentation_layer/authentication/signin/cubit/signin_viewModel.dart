@@ -15,7 +15,7 @@ final storage = FlutterSecureStorage();
     SigninViewModel({required this.signInUseCase}) : super(SigninInitState());
 
     TextEditingController emailController = TextEditingController(
-      text: "yassentest5@gmail.com ",
+      text: "yassentest5@gmail.com",
     );
     TextEditingController passwordController = TextEditingController(
       text: "Elevate@123",
