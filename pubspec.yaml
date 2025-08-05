@@ -14,6 +14,8 @@ dependencies:
     sdk: flutter
   intl: any
   image_picker: ^1.0.7
+  path_provider: ^2.1.2
+  path: ^1.8.3
   cupertino_icons: ^1.0.8
   retrofit: ^4.6.0
   json_annotation: ^4.9.0

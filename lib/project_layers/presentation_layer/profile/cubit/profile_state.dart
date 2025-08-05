@@ -17,3 +17,10 @@ class ProfileUpdatedState extends ProfileState {
   ProfileResponseEntity responseEntity;
   ProfileUpdatedState({required this.responseEntity});
 }
+
+// profile image
+class ProfileImageLoaded extends ProfileState {
+  final File image;
+  ProfileImageLoaded(this.image);
+}
+

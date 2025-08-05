@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/route/app_routes.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
@@ -23,16 +26,10 @@ class _ProfileViewState extends State<ProfileView> {
   File? _imageFile;
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(
-      source: ImageSource.gallery, // or ImageSource.camera
-      imageQuality: 75,
-    );
-
-    if (pickedFile != null) {
-      _imageFile = File(pickedFile.path);
-      setState(() {});
-    }
+  @override
+  void initState(){
+    super.initState();
+    _loadSavedImage();
   }
 
   @override
@@ -59,6 +56,9 @@ class _ProfileViewState extends State<ProfileView> {
         ),
         body: BlocBuilder<ProfileViewModel, ProfileState>(
             builder: (context, state){
+              if(state is ProfileImageLoaded){
+                _imageFile = state.image;
+              }
               if(state is ProfileLoadingState){
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -112,13 +112,13 @@ class _ProfileViewState extends State<ProfileView> {
               radius: 50,
               backgroundImage: _imageFile != null
                   ? FileImage(_imageFile!)
-                  : const NetworkImage('https://i.pravatar.cc/300') as ImageProvider,
+                  : AssetImage('assets/images/default_avatar.png') as ImageProvider,
             ),
             Positioned(
               bottom: 4,
               right: 4,
               child: InkWell(
-                onTap: _pickImage,
+                onTap: _pickAndSaveImage,
                 child: Container(
                   padding: const EdgeInsets.all(6),
                   decoration: const BoxDecoration(
@@ -183,13 +183,16 @@ class _ProfileViewState extends State<ProfileView> {
                   hint: viewModel.phoneNumberController.text
               ),
               10.heightBox,
-              ElevatedButton(
-                onPressed: () {
-                    if(_viewModel.formKey.currentState!.validate()){
-                      _viewModel.updateProfile();
-                    }
-                },
-                child: Text(context.l10n.update),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                      if(_viewModel.formKey.currentState!.validate()){
+                        _viewModel.updateProfile();
+                      }
+                  },
+                  child: Text(context.l10n.update),
+                ),
               )
             ],
           ),
@@ -276,6 +279,38 @@ class _ProfileViewState extends State<ProfileView> {
     _viewModel.lastNameController.text = state.responseEntity.user?.lastName ?? '';
     _viewModel.emailController.text = state.responseEntity.user?.email ?? '';
     _viewModel.phoneNumberController.text = state.responseEntity.user?.phone ?? '';
+  }
+
+  Future<void> _pickAndSaveImage() async {
+    final pickedFile = await _picker.pickImage(
+      source: ImageSource.gallery, // or ImageSource.camera
+      imageQuality: 75,
+    );
+    if (pickedFile == null) return;
+
+    _imageFile = File(pickedFile.path);
+    setState(() {});
+
+    // Get app's document directory
+    final appDir = await getApplicationDocumentsDirectory();
+
+    // Create a unique file name
+    final fileName = path.basename(pickedFile.path);
+
+    // Copy the picked image to app's directory
+    final savedImage = await _imageFile!.copy('${appDir.path}/$fileName');
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('profile_image_path', savedImage.path);
+  }
+
+  Future<File?> _loadSavedImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final imagePath = prefs.getString('profile_image_path');
+    if (imagePath == null) return null;
+
+    final file = File(imagePath);
+    if(await file.exists()) return file;
+    return null;
   }
 }
 
