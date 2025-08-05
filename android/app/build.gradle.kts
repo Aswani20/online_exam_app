@@ -42,3 +42,10 @@ android {
 flutter {
     source = "../.."
 }
+
+configurations.all {
+    if (name == "debugRuntimeClasspathCopy") {
+        isCanBeResolved = true
+        isCanBeConsumed = false
+    }
+}
