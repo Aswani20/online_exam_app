@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/route/app_routes.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
@@ -17,6 +20,20 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   final ProfileViewModel _viewModel = getIt<ProfileViewModel>();
   bool _dataInitialized = false;
+  File? _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(
+      source: ImageSource.gallery, // or ImageSource.camera
+      imageQuality: 75,
+    );
+
+    if (pickedFile != null) {
+      _imageFile = File(pickedFile.path);
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,62 +103,98 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   Widget buildProfileForm(BuildContext context, ProfileViewModel viewModel) {
-    return Form(
-      key: viewModel.formKey,
-      child: Column(
-        children: [
-          _buildTextField(
-            controller: viewModel.userNameController,
-            label: context.l10n.userName,
-            hint: viewModel.userNameController.text,
-          ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: _imageFile != null
+                  ? FileImage(_imageFile!)
+                  : const NetworkImage('https://i.pravatar.cc/300') as ImageProvider,
+            ),
+            Positioned(
+              bottom: 4,
+              right: 4,
+              child: InkWell(
+                onTap: _pickImage,
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        10.heightBox,
+        Form(
+          key: viewModel.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Expanded(
-                child: _buildTextField(
-                  controller: viewModel.firstNameController,
-                  label: context.l10n.firstName,
-                  hint: viewModel.firstNameController.text
-                ),
+              _buildTextField(
+                controller: viewModel.userNameController,
+                label: context.l10n.userName,
+                hint: viewModel.userNameController.text,
               ),
-              Expanded(
-                child: _buildTextField(
-                  controller: viewModel.lastNameController,
-                  label: context.l10n.lastName,
-                  hint: viewModel.lastNameController.text
-                ),
+              10.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: _buildTextField(
+                      controller: viewModel.firstNameController,
+                      label: context.l10n.firstName,
+                      hint: viewModel.firstNameController.text
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildTextField(
+                      controller: viewModel.lastNameController,
+                      label: context.l10n.lastName,
+                      hint: viewModel.lastNameController.text
+                    ),
+                  ),
+                ],
               ),
+              10.heightBox,
+              _buildTextField(
+                  controller: viewModel.emailController,
+                  label: context.l10n.email,
+                  hint: viewModel.emailController.text
+              ),
+              10.heightBox,
+              _buildPasswordField(
+                  label: context.l10n.password
+              ),
+              10.heightBox,
+              _buildTextField(
+                  controller: viewModel.phoneNumberController,
+                  label: context.l10n.phoneNumber,
+                  hint: viewModel.phoneNumberController.text
+              ),
+              10.heightBox,
+              ElevatedButton(
+                onPressed: () {
+                    if(_viewModel.formKey.currentState!.validate()){
+                      _viewModel.updateProfile();
+                    }
+                },
+                child: Text(context.l10n.update),
+              )
             ],
           ),
-          SizedBox(height: 10),
-          _buildTextField(
-              controller: viewModel.emailController,
-              label: context.l10n.email,
-              hint: viewModel.emailController.text
-          ),
-          SizedBox(height: 10),
-          _buildPasswordField(
-              label: context.l10n.password
-          ),
-          SizedBox(height: 10),
-          _buildTextField(
-              controller: viewModel.phoneNumberController,
-              label: context.l10n.phoneNumber,
-              hint: viewModel.phoneNumberController.text
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-                if(_viewModel.formKey.currentState!.validate()){
-                  _viewModel.updateProfile();
-                }
-            },
-            child: Text(context.l10n.update),
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 

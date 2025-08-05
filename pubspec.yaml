@@ -13,6 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  image_picker: ^1.0.7
   cupertino_icons: ^1.0.8
   retrofit: ^4.6.0
   json_annotation: ^4.9.0
