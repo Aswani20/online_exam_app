@@ -16,7 +16,12 @@ abstract class AppTheme {
         foregroundColor: AppColors.black,
         elevation: 0,
       ),
-
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: AppColors.lightBlue,
+        selectedItemColor: AppColors.blue,
+        unselectedItemColor: AppColors.blue,
+        elevation: 0,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(18),

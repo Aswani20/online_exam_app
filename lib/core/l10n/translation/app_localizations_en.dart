@@ -159,4 +159,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get otp_resend_to_mail =>
       'OTP resent to your email successfully\n Please check your email';
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get result => 'Result';
+
+  @override
+  String get profile => 'Profile';
 }
