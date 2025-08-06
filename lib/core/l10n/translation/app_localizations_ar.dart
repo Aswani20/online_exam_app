@@ -159,4 +159,13 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get otp_resend_to_mail =>
       'تم إعادة ارسال كود التحقق بنجاح\n رجاء التحقق من البريد الالكتروني الخاص بك';
+
+  @override
+  String get explore => 'استكشاف';
+
+  @override
+  String get result => 'النتائج';
+
+  @override
+  String get profile => 'الصفحة الشخصية';
 }

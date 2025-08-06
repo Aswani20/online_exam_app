@@ -164,7 +164,7 @@ class _SignInViewState extends State<SignInView> {
             posFunction: (p0) {
               Navigator.pushReplacementNamed(
                 context,
-                AppRoutes.signUpScreen /*AppRoutes.loginScreen*/,
+                AppRoutes.homeScreen /*AppRoutes.loginScreen*/,
               );
             },
           );

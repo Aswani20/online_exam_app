@@ -46,7 +46,8 @@
     "network_error" : "No internet connection",
     "server_error" : "Server error",
    "reset_pass_success" : "Password reset successfully",
-   "otp_resend_to_mail": "OTP resent to your email successfully\n Please check your email"
-
-
+   "otp_resend_to_mail": "OTP resent to your email successfully\n Please check your email",
+   "explore" : "Explore",
+   "result" : "Result",
+   "profile" : "Profile"
 }
