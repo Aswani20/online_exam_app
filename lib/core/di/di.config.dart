@@ -18,11 +18,19 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import '../../project_layers/api_layer/api_client/api_client.dart' as _i778;
 import '../../project_layers/api_layer/data_sources/auth_remote_data_source_impl.dart'
     as _i871;
+import '../../project_layers/api_layer/data_sources/subject_remote_data_source_impl.dart'
+    as _i443;
 import '../../project_layers/data_layer/data_source/auth_remote_data_source.dart'
     as _i956;
+import '../../project_layers/data_layer/data_source/subject_remote_data_source.dart'
+    as _i856;
 import '../../project_layers/data_layer/repositories/auth_repo_impl.dart'
     as _i511;
+import '../../project_layers/data_layer/repositories/subject_repo_impl.dart'
+    as _i683;
 import '../../project_layers/domain_layer/repositories/auth_repo.dart' as _i777;
+import '../../project_layers/domain_layer/repositories/subject_repo.dart'
+    as _i250;
 import '../../project_layers/domain_layer/use_cases/forget_pass_use_case.dart'
     as _i835;
 import '../../project_layers/domain_layer/use_cases/otp_use_case.dart' as _i796;
@@ -32,13 +40,16 @@ import '../../project_layers/domain_layer/use_cases/sign_in_use_case.dart'
     as _i594;
 import '../../project_layers/domain_layer/use_cases/sign_up_use_case.dart'
     as _i123;
+import '../../project_layers/domain_layer/use_cases/subject_use_case.dart'
+    as _i43;
 import '../../project_layers/presentation_layer/authentication/forget_password/cubit/forget_pass_view_model.dart'
     as _i91;
 import '../../project_layers/presentation_layer/authentication/signin/cubit/sign_in_view_model.dart'
     as _i1012;
 import '../../project_layers/presentation_layer/authentication/signup/cubit/signup_view_model.dart'
     as _i517;
-import '../services/auth_interceptor.dart' as _i756;
+import '../../project_layers/presentation_layer/home/tabs/explore_tab/cuibt/explore_view_model.dart'
+    as _i398;
 import 'modules/dio_module.dart' as _i983;
 import 'modules/shared_preferences_module.dart' as _i813;
 
@@ -55,19 +66,28 @@ extension GetItInjectableX on _i174.GetIt {
       () => sharedPreferencesModule.provideSharedPreferences(),
       preResolve: true,
     );
-    gh.singleton<_i756.AuthInterceptor>(() => dioModule.authInterceptor);
+    gh.singleton<_i361.Dio>(() => dioModule.provideDio());
     gh.singleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
-    );
-    gh.singleton<_i361.Dio>(
-      () => dioModule.provideDio(gh<_i756.AuthInterceptor>()),
     );
     gh.singleton<_i778.ApiClient>(() => _i778.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i956.AuthRemoteDataSource>(
       () => _i871.AuthRemoteDataSourceImpl(gh<_i778.ApiClient>()),
     );
+    gh.factory<_i856.SubjectRemoteDataSource>(
+      () => _i443.SubjectRemoteDataSourceImpl(gh<_i778.ApiClient>()),
+    );
+    gh.factory<_i250.SubjectRepo>(
+      () => _i683.SubjectRepoImpl(gh<_i856.SubjectRemoteDataSource>()),
+    );
+    gh.factory<_i43.SubjectUseCase>(
+      () => _i43.SubjectUseCase(subjectRepo: gh<_i250.SubjectRepo>()),
+    );
     gh.factory<_i777.AuthRepo>(
       () => _i511.AuthRepoImpl(gh<_i956.AuthRemoteDataSource>()),
+    );
+    gh.factory<_i398.ExploreViewModel>(
+      () => _i398.ExploreViewModel(subjectUseCase: gh<_i43.SubjectUseCase>()),
     );
     gh.factory<_i123.SignUpUseCase>(
       () => _i123.SignUpUseCase(authRepo: gh<_i777.AuthRepo>()),
