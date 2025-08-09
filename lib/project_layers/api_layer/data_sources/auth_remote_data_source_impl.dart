@@ -46,7 +46,8 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       var statusCode = response.response.statusCode;
       if (statusCode! >= 200 && statusCode < 300) {
         return Right(response.data.toEntity());
-      } else {
+      }
+      else {
         return Left(
           ServerError(errorMessage: response.data.message ?? "Server Error"),
         );

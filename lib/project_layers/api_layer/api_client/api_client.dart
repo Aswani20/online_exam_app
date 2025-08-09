@@ -8,8 +8,8 @@ import 'package:online_exam_app/project_layers/api_layer/model/responses/Sign_in
 import 'package:online_exam_app/project_layers/api_layer/model/responses/forget_pass_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/responses/sign_up_response_dto.dart';
 import 'package:online_exam_app/project_layers/api_layer/model/requests/sign_up_request_dto.dart';
+import 'package:online_exam_app/project_layers/api_layer/model/subject_model/subject_response.dart';
 import 'package:retrofit/retrofit.dart';
-
 import '../model/responses/otp_response_dto.dart';
 import '../model/responses/reset_pass_response_dto.dart';
 part 'api_client.g.dart';
@@ -28,7 +28,7 @@ abstract class ApiClient {
   @POST("/v1/auth/signin")
   Future<HttpResponse<SigninResponseDto>> signin({
     @Body() required SigninRequestDto request,
-});
+  });
 
   @POST("/v1/auth/forgotPassword")
   Future<HttpResponse<ForgetPassResponseDto>> forgetPass({
@@ -43,5 +43,10 @@ abstract class ApiClient {
   @PUT("/v1/auth/resetPassword")
   Future<HttpResponse<ResetPassResponseDto>> resetPass({
     @Body() required ResetPassRequestDto resetPassRequest,
+  });
+
+  @GET("/v1/subjects")
+  Future<HttpResponse<SubjectResponseDto>> getAllSubjects({
+    @Header("token") required String token,
   });
 }

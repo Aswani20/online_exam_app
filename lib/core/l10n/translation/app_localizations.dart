@@ -403,6 +403,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @survey.
+  ///
+  /// In en, this message translates to:
+  /// **'Survey'**
+  String get survey;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @browse_by_subject.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by subject'**
+  String get browse_by_subject;
 }
 
 class _AppLocalizationsDelegate

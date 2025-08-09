@@ -168,4 +168,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الصفحة الشخصية';
+
+  @override
+  String get survey => 'استطلاع';
+
+  @override
+  String get search => 'بحث';
+
+  @override
+  String get browse_by_subject => 'البحث بالموضوع';
 }
