@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/core/route/app_routes.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/home/tabs/profile_tab/cubit/profile_view_model.dart';
 
@@ -26,10 +27,15 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
           return Scaffold(
             appBar: AppBar(
               leading: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Icon(Icons.arrow_back_ios),
+                padding: const EdgeInsets.only(left: 8.0),
+                child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                  onPressed: (){
+                      Navigator.pop(context);
+                  },
+                ),
               ),
-              leadingWidth: 20,
+              leadingWidth: 30,
               title: Text(
                 context.l10n.reset_password,
                 style: AppStyles.appBarTitleStyle,
@@ -48,26 +54,32 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                         children: [
                           _passTextField(
                             controller: _viewModel.oldPasswordController,
-                            label: context.l10n.oldPassword
+                            label: context.l10n.oldPassword,
+                            validator: (value) => AppValidators.nonEmptyField(value, context)
                           ),
                           20.heightBox,
                           _passTextField(
                             controller: _viewModel.newPasswordController,
-                            label: context.l10n.newPassword
+                            label: context.l10n.newPassword,
+                            validator: (value) => AppValidators.passwordValidator(value, context)
                           ),
                           20.heightBox,
                           _passTextField(
                             controller: _viewModel.rePasswordController,
-                            label: context.l10n.confirmPassword
+                            label: context.l10n.confirmPassword,
+                            validator: (value) => AppValidators.confirmPasswordValidator(value, _viewModel.rePasswordController, context)
                           ),
                           20.heightBox,
-                          ElevatedButton(
-                            onPressed:
-                            _viewModel.isEnable
-                                ? () {
-                              _viewModel.changePassword();
-                            } : null,
-                            child: Text(context.l10n.update),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed:
+                              _viewModel.isEnable
+                                  ? () {
+                                _viewModel.changePassword();
+                              } : null,
+                              child: Text(context.l10n.update),
+                            ),
                           )
                         ]
                       ),
@@ -91,6 +103,10 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   Navigator.pop(context);
                 }
             );
+            Navigator.pushReplacementNamed(
+              context,
+              AppRoutes.profileScreen
+            );
           } else if(state is ProfileErrorState){
             DialogUtils.hideLoading(context);
             DialogUtils.showMessage(
@@ -105,11 +121,12 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
 
   Widget _passTextField({
     required TextEditingController controller,
-    required String label
+    required String label,
+    required FormFieldValidator<String>? validator
   }){
     return TextFormField(
       onChanged: (value) => _viewModel.checkFormValidity(),
-      validator: (value) => AppValidators.passwordValidator(value, context),
+      validator: validator,
       controller: controller,
       obscureText: _viewModel.isObscureText,
       decoration: InputDecoration(
