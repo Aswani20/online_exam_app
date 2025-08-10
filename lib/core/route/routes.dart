@@ -6,6 +6,7 @@ import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/extensions/project_extensions.dart';
 import 'package:online_exam_app/project_layers/presentation_layer/authentication/forget_password/forget_password_screen.dart';
+import 'package:online_exam_app/project_layers/presentation_layer/home/tabs/profile_tab/change_password_view.dart';
 import '../../project_layers/presentation_layer/authentication/signup/signup_view.dart';
 
 abstract class Routes {
@@ -16,7 +17,8 @@ abstract class Routes {
         return MaterialPageRoute(builder: (_) => SignupView());
       case AppRoutes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => ForgetPassWordScreen());
-
+      case AppRoutes.changePasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordView());
       default:
         return MaterialPageRoute(builder: (context) => NotFoundScreen());
     }

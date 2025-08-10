@@ -323,7 +323,7 @@ abstract class AppLocalizations {
   /// No description provided for @reset_password.
   ///
   /// In en, this message translates to:
-  /// **'Reset_password'**
+  /// **'Reset password'**
   String get reset_password;
 
   /// No description provided for @reset_password_body.
@@ -403,6 +403,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @oldPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get oldPassword;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get newPassword;
 }
 
 class _AppLocalizationsDelegate

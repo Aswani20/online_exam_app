@@ -6,7 +6,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 @module
 abstract class DioModule{
   @singleton
-  Dio provideDio(AuthInterceptor authInterceptor){
+  Dio provideDio(AuthInterceptor authInterceptor, PrettyDioLogger logger){
     Dio dio = Dio(
       BaseOptions(
         baseUrl: 'https://exam.elevateegy.com/api/',
@@ -16,8 +16,10 @@ abstract class DioModule{
         validateStatus: (status) =>status !=null && status < 500
       )
     );
-    dio.interceptors.add(PrettyDioLogger());
-    dio.interceptors.add(AuthInterceptor());
+    dio.interceptors.addAll([
+      authInterceptor,
+      logger
+    ]);
     return dio;
   }
 
@@ -31,7 +33,4 @@ abstract class DioModule{
       responseHeader: true,
     );
   }
-
-  @singleton
-  AuthInterceptor get authInterceptor => AuthInterceptor();
 }

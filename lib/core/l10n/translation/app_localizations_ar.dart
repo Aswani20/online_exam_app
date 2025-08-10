@@ -168,4 +168,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الصفحة الشخصية';
+
+  @override
+  String get editProfile => 'نعديل الملف';
+
+  @override
+  String get update => 'تحديث';
+
+  @override
+  String get change => 'تغير';
+
+  @override
+  String get oldPassword => 'كلمة السر الحالية';
+
+  @override
+  String get newPassword => 'كلمة السر الجديدة';
 }

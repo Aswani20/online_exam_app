@@ -36,7 +36,7 @@
    "didnt_receive_code": "Didn't receive the code?",
    "resend": "Resend",
    "invalid_code": "❗Invalid code",
-   "reset_password": "Reset_password",
+   "reset_password": "Reset password",
    "reset_password_body": "Password must not be empty and must contain\n 6 characters with upper case letter and one\n number at least",
    "new_password": "New Password",
    "enter_your_password" : "Enter your password",
@@ -49,5 +49,10 @@
    "otp_resend_to_mail": "OTP resent to your email successfully\n Please check your email",
    "explore" : "Explore",
    "result" : "Result",
-   "profile" : "Profile"
+   "profile" : "Profile",
+   "editProfile" : "Edit profile",
+   "update" : "Update",
+   "change" : "Change",
+   "oldPassword" : "Current password",
+   "newPassword" : "New password"
 }

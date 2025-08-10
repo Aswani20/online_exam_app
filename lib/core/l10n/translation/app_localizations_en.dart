@@ -126,7 +126,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invalid_code => '❗Invalid code';
 
   @override
-  String get reset_password => 'Reset_password';
+  String get reset_password => 'Reset password';
 
   @override
   String get reset_password_body =>
@@ -168,4 +168,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get update => 'Update';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get oldPassword => 'Current password';
+
+  @override
+  String get newPassword => 'New password';
 }
